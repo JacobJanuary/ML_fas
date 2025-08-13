@@ -1,0 +1,1498 @@
+2025-08-12 03:13:01,475 - __main__ - INFO - 
+==================================================
+2025-08-12 03:13:01,475 - __main__ - INFO - Training BUY Models
+2025-08-12 03:13:01,475 - __main__ - INFO - ==================================================
+
+2025-08-12 03:13:01,475 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 03:14:38,022 - __main__ - INFO - 
+==================================================
+2025-08-12 03:14:38,022 - __main__ - INFO - Training BUY Models
+2025-08-12 03:14:38,022 - __main__ - INFO - ==================================================
+
+2025-08-12 03:14:38,022 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 03:14:45,005 - __main__ - INFO - Loaded 81387 records for BUY
+2025-08-12 03:14:45,257 - __main__ - INFO - Data split - Train: 58801, Val: 10377, Test: 12209
+2025-08-12 03:14:45,257 - __main__ - INFO - Target distribution - Train: 48.61%, Val: 48.61%, Test: 48.60%
+2025-08-12 03:14:45,257 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 03:20:31,961 - __main__ - INFO - 
+==================================================
+2025-08-12 03:20:31,961 - __main__ - INFO - Training BUY Models
+2025-08-12 03:20:31,961 - __main__ - INFO - ==================================================
+
+2025-08-12 03:20:31,961 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 03:20:38,180 - __main__ - INFO - Loaded 81512 records for BUY
+2025-08-12 03:20:38,431 - __main__ - INFO - Data split - Train: 58892, Val: 10393, Test: 12227
+2025-08-12 03:20:38,431 - __main__ - INFO - Target distribution - Train: 48.55%, Val: 48.55%, Test: 48.56%
+2025-08-12 03:20:38,431 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 03:22:39,021 - __main__ - INFO - XGBoost best AUC: 0.9638
+2025-08-12 03:22:39,022 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 03:32:52,903 - __main__ - INFO - LightGBM best AUC: 0.9675
+2025-08-12 03:32:52,903 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 03:37:17,749 - __main__ - INFO - CatBoost best AUC: 0.9655
+2025-08-12 03:37:17,749 - __main__ - INFO - 
+Training final models...
+2025-08-12 03:37:21,378 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 03:37:21,378 - __main__ - INFO -   roc_auc: 0.9628
+2025-08-12 03:37:21,378 - __main__ - INFO -   precision: 0.8865
+2025-08-12 03:37:21,378 - __main__ - INFO -   recall: 0.9077
+2025-08-12 03:37:21,378 - __main__ - INFO -   f1: 0.8970
+2025-08-12 03:37:21,378 - __main__ - INFO -   accuracy: 0.8987
+2025-08-12 03:37:21,378 - __main__ - INFO -   expected_profit: 2.3190
+2025-08-12 03:37:21,378 - __main__ - INFO -   win_rate: 0.8865
+2025-08-12 03:37:39,075 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 03:37:39,075 - __main__ - INFO -   roc_auc: 0.9658
+2025-08-12 03:37:39,075 - __main__ - INFO -   precision: 0.8957
+2025-08-12 03:37:39,075 - __main__ - INFO -   recall: 0.9042
+2025-08-12 03:37:39,075 - __main__ - INFO -   f1: 0.8999
+2025-08-12 03:37:39,075 - __main__ - INFO -   accuracy: 0.9023
+2025-08-12 03:37:39,075 - __main__ - INFO -   expected_profit: 2.3743
+2025-08-12 03:37:39,075 - __main__ - INFO -   win_rate: 0.8957
+2025-08-12 03:37:47,346 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 03:37:47,346 - __main__ - INFO -   roc_auc: 0.9647
+2025-08-12 03:37:47,346 - __main__ - INFO -   precision: 0.8881
+2025-08-12 03:37:47,346 - __main__ - INFO -   recall: 0.9117
+2025-08-12 03:37:47,346 - __main__ - INFO -   f1: 0.8998
+2025-08-12 03:37:47,346 - __main__ - INFO -   accuracy: 0.9014
+2025-08-12 03:37:47,346 - __main__ - INFO -   expected_profit: 2.3286
+2025-08-12 03:37:47,346 - __main__ - INFO -   win_rate: 0.8881
+2025-08-12 03:37:48,369 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-12 12:09:13,975 - __main__ - INFO - 
+Best model for BUY: LightGBM
+2025-08-12 12:09:13,977 - __main__ - INFO - Expected profit: 2.3743
+2025-08-12 12:09:14,155 - __main__ - INFO - Feature importance plot saved to buy_lightgbm_importance.png
+2025-08-12 12:09:53,428 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-12 12:09:53,446 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-12 12:09:53,498 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-12 12:09:53,516 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-12 12:09:53,561 - __main__ - INFO - Best model saved to models/buy_best_model.pkl
+2025-08-12 12:09:53,563 - __main__ - INFO - 
+==================================================
+2025-08-12 12:09:53,563 - __main__ - INFO - Training SELL Models
+2025-08-12 12:09:53,563 - __main__ - INFO - ==================================================
+
+2025-08-12 12:09:53,563 - __main__ - INFO - Loading SELL data from database...
+2025-08-12 12:10:01,694 - __main__ - INFO - Loaded 107661 records for SELL
+2025-08-12 12:10:02,033 - __main__ - INFO - Data split - Train: 77784, Val: 13727, Test: 16150
+2025-08-12 12:10:02,033 - __main__ - INFO - Target distribution - Train: 38.95%, Val: 38.95%, Test: 38.95%
+2025-08-12 12:10:02,033 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 12:12:11,007 - __main__ - INFO - XGBoost best AUC: 0.9593
+2025-08-12 12:12:11,007 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 12:25:47,312 - __main__ - INFO - LightGBM best AUC: 0.9683
+2025-08-12 12:25:47,313 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 12:31:32,723 - __main__ - INFO - CatBoost best AUC: 0.9634
+2025-08-12 12:31:32,724 - __main__ - INFO - 
+Training final models...
+2025-08-12 12:31:37,545 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 12:31:37,545 - __main__ - INFO -   roc_auc: 0.9556
+2025-08-12 12:31:37,545 - __main__ - INFO -   precision: 0.8477
+2025-08-12 12:31:37,545 - __main__ - INFO -   recall: 0.8725
+2025-08-12 12:31:37,545 - __main__ - INFO -   f1: 0.8599
+2025-08-12 12:31:37,545 - __main__ - INFO -   accuracy: 0.8893
+2025-08-12 12:31:37,545 - __main__ - INFO -   expected_profit: 2.0862
+2025-08-12 12:31:37,545 - __main__ - INFO -   win_rate: 0.8477
+2025-08-12 12:32:08,901 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 12:32:08,901 - __main__ - INFO -   roc_auc: 0.9644
+2025-08-12 12:32:08,901 - __main__ - INFO -   precision: 0.8830
+2025-08-12 12:32:08,901 - __main__ - INFO -   recall: 0.8685
+2025-08-12 12:32:08,901 - __main__ - INFO -   f1: 0.8757
+2025-08-12 12:32:08,901 - __main__ - INFO -   accuracy: 0.9040
+2025-08-12 12:32:08,902 - __main__ - INFO -   expected_profit: 2.2979
+2025-08-12 12:32:08,902 - __main__ - INFO -   win_rate: 0.8830
+2025-08-12 12:32:19,296 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 12:32:19,296 - __main__ - INFO -   roc_auc: 0.9581
+2025-08-12 12:32:19,296 - __main__ - INFO -   precision: 0.8669
+2025-08-12 12:32:19,296 - __main__ - INFO -   recall: 0.8719
+2025-08-12 12:32:19,296 - __main__ - INFO -   f1: 0.8694
+2025-08-12 12:32:19,296 - __main__ - INFO -   accuracy: 0.8980
+2025-08-12 12:32:19,296 - __main__ - INFO -   expected_profit: 2.2014
+2025-08-12 12:32:19,296 - __main__ - INFO -   win_rate: 0.8669
+2025-08-12 12:32:19,416 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-12 12:35:08,723 - __main__ - INFO - 
+Best model for SELL: LightGBM
+2025-08-12 12:35:08,725 - __main__ - INFO - Expected profit: 2.2979
+2025-08-12 12:35:08,844 - __main__ - INFO - Feature importance plot saved to sell_lightgbm_importance.png
+2025-08-12 12:35:12,671 - __main__ - INFO - Preprocessor saved to models/sell_preprocessor.pkl
+2025-08-12 12:35:12,689 - __main__ - INFO - XGBoost model saved to models/sell_xgboost_model.pkl
+2025-08-12 12:35:12,818 - __main__ - INFO - LightGBM model saved to models/sell_lightgbm_model.pkl
+2025-08-12 12:35:12,833 - __main__ - INFO - CatBoost model saved to models/sell_catboost_model.pkl
+2025-08-12 12:35:12,953 - __main__ - INFO - Best model saved to models/sell_best_model.pkl
+2025-08-12 12:35:12,953 - __main__ - INFO - 
+==================================================
+2025-08-12 12:35:12,953 - __main__ - INFO - TRAINING COMPLETE
+2025-08-12 12:35:12,953 - __main__ - INFO - ==================================================
+2025-08-12 12:35:12,953 - __main__ - INFO - 
+BUY Model Performance:
+2025-08-12 12:35:12,953 - __main__ - INFO - Best Model: LightGBM
+2025-08-12 12:35:12,953 - __main__ - INFO -   roc_auc: 0.9658
+2025-08-12 12:35:12,953 - __main__ - INFO -   precision: 0.8957
+2025-08-12 12:35:12,953 - __main__ - INFO -   recall: 0.9042
+2025-08-12 12:35:12,953 - __main__ - INFO -   f1: 0.8999
+2025-08-12 12:35:12,953 - __main__ - INFO -   accuracy: 0.9023
+2025-08-12 12:35:12,953 - __main__ - INFO -   expected_profit: 2.3743
+2025-08-12 12:35:12,953 - __main__ - INFO -   win_rate: 0.8957
+2025-08-12 12:35:12,953 - __main__ - INFO - 
+SELL Model Performance:
+2025-08-12 12:35:12,953 - __main__ - INFO - Best Model: LightGBM
+2025-08-12 12:35:12,953 - __main__ - INFO -   roc_auc: 0.9644
+2025-08-12 12:35:12,954 - __main__ - INFO -   precision: 0.8830
+2025-08-12 12:35:12,954 - __main__ - INFO -   recall: 0.8685
+2025-08-12 12:35:12,954 - __main__ - INFO -   f1: 0.8757
+2025-08-12 12:35:12,954 - __main__ - INFO -   accuracy: 0.9040
+2025-08-12 12:35:12,954 - __main__ - INFO -   expected_profit: 2.2979
+2025-08-12 12:35:12,954 - __main__ - INFO -   win_rate: 0.8830
+2025-08-12 13:21:58,653 - __main__ - INFO - 
+🧪 TEST 1: Feature Engineering
+2025-08-12 13:21:58,653 - __main__ - INFO - Testing Market Regime Enhanced Features...
+2025-08-12 13:21:59,517 - __main__ - INFO - Loaded 1000 test records
+2025-08-12 13:21:59,530 - ml_trading_model_training - INFO - Engineered 10 market regime features
+2025-08-12 13:21:59,530 - __main__ - INFO - 
+New regime features created: 10
+2025-08-12 13:21:59,530 - __main__ - INFO -   - regime_signal_match: mean=0.000, std=0.000
+2025-08-12 13:21:59,530 - __main__ - INFO -   - regime_conflict: mean=-10.000, std=0.000
+2025-08-12 13:21:59,530 - __main__ - INFO -   - regime_neutral: mean=0.000, std=0.000
+2025-08-12 13:21:59,530 - __main__ - INFO -   - strong_signal_right_regime: mean=0.000, std=0.000
+2025-08-12 13:21:59,530 - __main__ - INFO -   - weak_signal_wrong_regime: mean=-9.330, std=2.501
+2025-08-12 13:21:59,531 - __main__ - INFO -   - regime_numeric: mean=-1.000, std=0.000
+2025-08-12 13:21:59,531 - __main__ - INFO -   - regime_x_total_score: mean=-27.123, std=16.630
+2025-08-12 13:21:59,531 - __main__ - INFO -   - regime_x_rsi: mean=-57.090, std=14.201
+2025-08-12 13:21:59,531 - __main__ - INFO -   - regime_x_volume: mean=-0.822, std=3.754
+2025-08-12 13:21:59,532 - ml_trading_model_training - INFO - Sample weights distribution:
+2025-08-12 13:21:59,532 - ml_trading_model_training - INFO -   Weight 2.0 (best): 0 samples
+2025-08-12 13:21:59,532 - ml_trading_model_training - INFO -   Weight 1.5 (good): 0 samples
+2025-08-12 13:21:59,532 - ml_trading_model_training - INFO -   Weight 1.0 (neutral): 0 samples
+2025-08-12 13:21:59,532 - ml_trading_model_training - INFO -   Weight 0.5 (bad): 1000 samples
+2025-08-12 13:21:59,532 - __main__ - INFO - 
+Sample weights by market regime:
+2025-08-12 13:21:59,532 - __main__ - INFO -   BEAR:
+2025-08-12 13:21:59,532 - __main__ - INFO -     Count: 1000
+2025-08-12 13:21:59,532 - __main__ - INFO -     Mean weight: 0.50
+2025-08-12 13:21:59,532 - __main__ - INFO -     Weight distribution: 0.5=1000, 1.0=0, 1.5=0, 2.0=0
+2025-08-12 13:21:59,532 - __main__ - INFO - 
+Correlation of regime features with target:
+2025-08-12 13:21:59,532 - __main__ - INFO -   regime_signal_match: nan
+2025-08-12 13:21:59,533 - __main__ - INFO -   regime_conflict: nan
+2025-08-12 13:21:59,533 - __main__ - INFO -   regime_neutral: nan
+2025-08-12 13:21:59,533 - __main__ - INFO - 
+📊 TEST 2: Expected Improvement
+2025-08-12 13:21:59,533 - __main__ - INFO - 
+==================================================
+2025-08-12 13:21:59,533 - __main__ - INFO - Expected Improvement Analysis
+2025-08-12 13:21:59,533 - __main__ - INFO - ==================================================
+2025-08-12 13:22:00,162 - __main__ - INFO - 
+BUY Signal Performance by Market Regime:
+2025-08-12 13:22:00,167 - __main__ - INFO - market_regime  signals  win_rate_pct  expected_value                strategy
+         BULL    35548          59.0            0.54 TRADE (Weight: 1.5-2.0)
+      NEUTRAL    34947          41.6           -0.50 SELECTIVE (Weight: 1.0)
+         BEAR    13216          33.2           -1.01     AVOID (Weight: 0.5)
+2025-08-12 13:22:00,168 - __main__ - INFO - 
+Expected Improvement:
+2025-08-12 13:22:00,168 - __main__ - INFO -   Baseline (all trades): -0.14%
+2025-08-12 13:22:00,168 - __main__ - INFO -   Filtered (BULL only): 0.54%
+2025-08-12 13:22:00,168 - __main__ - INFO -   Improvement: 488.8%
+2025-08-12 13:32:06,167 - __main__ - INFO - 
+🚀 TEST 3: Quick Training
+2025-08-12 13:32:06,169 - __main__ - INFO - 
+==================================================
+2025-08-12 13:32:06,169 - __main__ - INFO - Quick Training Test with Market Regime Weights
+2025-08-12 13:32:06,169 - __main__ - INFO - ==================================================
+2025-08-12 13:32:06,173 - ml_trading_model_training - INFO - 
+==================================================
+2025-08-12 13:32:06,173 - ml_trading_model_training - INFO - Training BUY Models
+2025-08-12 13:32:06,173 - ml_trading_model_training - INFO - ==================================================
+
+2025-08-12 13:32:06,173 - ml_trading_model_training - INFO - Loading BUY data from database...
+2025-08-12 13:32:12,212 - ml_trading_model_training - INFO - Loaded 83743 records for BUY
+2025-08-12 13:32:12,212 - ml_trading_model_training - INFO - Market regime distribution:
+2025-08-12 13:32:12,218 - ml_trading_model_training - INFO - market_regime
+BULL       35580
+NEUTRAL    34947
+BEAR       13216
+Name: count, dtype: int64
+2025-08-12 13:32:12,328 - ml_trading_model_training - INFO - Engineered 10 market regime features
+2025-08-12 13:32:12,511 - __main__ - ERROR - Training test failed: could not convert string to float: 'BUY'
+2025-08-12 13:34:00,252 - __main__ - INFO - Running in QUICK TEST mode with reduced trials
+2025-08-12 13:34:00,253 - __main__ - INFO - 
+==================================================
+2025-08-12 13:34:00,253 - __main__ - INFO - Training BUY Models
+2025-08-12 13:34:00,253 - __main__ - INFO - ==================================================
+
+2025-08-12 13:34:00,253 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 13:34:06,108 - __main__ - INFO - Loaded 83743 records for BUY
+2025-08-12 13:34:06,108 - __main__ - INFO - Market regime distribution:
+2025-08-12 13:34:06,112 - __main__ - INFO - market_regime
+BULL       35580
+NEUTRAL    34947
+BEAR       13216
+Name: count, dtype: int64
+2025-08-12 13:34:06,240 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 13:34:06,409 - __main__ - INFO - Sample weights distribution:
+2025-08-12 13:34:06,409 - __main__ - INFO -   Weight 2.0 (best): 20993 samples
+2025-08-12 13:34:06,409 - __main__ - INFO -   Weight 1.5 (good): 14587 samples
+2025-08-12 13:34:06,409 - __main__ - INFO -   Weight 1.0 (neutral): 34947 samples
+2025-08-12 13:34:06,409 - __main__ - INFO -   Weight 0.5 (bad): 13216 samples
+2025-08-12 13:34:06,410 - __main__ - INFO - Data split (temporal):
+2025-08-12 13:34:06,410 - __main__ - INFO -   Train: 58620 samples (first 70%)
+2025-08-12 13:34:06,410 - __main__ - INFO -   Val: 12561 samples (next 15%)
+2025-08-12 13:34:06,410 - __main__ - INFO -   Test: 12562 samples (last 15%)
+2025-08-12 13:34:06,411 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-06 07:30:00+00:00
+2025-08-12 13:34:06,411 - __main__ - INFO -   Val period: 2025-08-06 07:30:00+00:00 to 2025-08-08 00:30:00+00:00
+2025-08-12 13:34:06,411 - __main__ - INFO -   Test period: 2025-08-08 00:30:00+00:00 to 2025-08-09 22:30:00+00:00
+2025-08-12 13:34:06,437 - __main__ - INFO - Target distribution:
+2025-08-12 13:34:06,437 - __main__ - INFO -   Train: 35.80% win rate
+2025-08-12 13:34:06,437 - __main__ - INFO -   Val: 87.77% win rate
+2025-08-12 13:34:06,437 - __main__ - INFO -   Test: 63.02% win rate
+2025-08-12 13:34:06,437 - __main__ - INFO - Market regime in test set:
+2025-08-12 13:34:06,438 - __main__ - INFO - market_regime
+BULL       5281
+NEUTRAL    5245
+BEAR       2036
+Name: count, dtype: int64
+2025-08-12 13:34:06,438 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 13:34:09,557 - __main__ - INFO - XGBoost best AUC: 0.6197
+2025-08-12 13:34:09,557 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 13:34:16,167 - __main__ - INFO - LightGBM best AUC: 0.6158
+2025-08-12 13:34:16,167 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 13:34:22,299 - __main__ - INFO - CatBoost best AUC: 0.5728
+2025-08-12 13:34:22,299 - __main__ - INFO - 
+Training final models with sample weights...
+2025-08-12 13:34:22,520 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 13:34:22,520 - __main__ - INFO -   roc_auc: 0.5629
+2025-08-12 13:34:22,520 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:34:22,520 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:34:22,520 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:34:22,520 - __main__ - INFO -   accuracy: 0.3698
+2025-08-12 13:34:22,520 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:34:22,520 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:34:23,652 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 13:34:23,652 - __main__ - INFO -   roc_auc: 0.2923
+2025-08-12 13:34:23,652 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:34:23,652 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:34:23,652 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:34:23,652 - __main__ - INFO -   accuracy: 0.3698
+2025-08-12 13:34:23,652 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:34:23,652 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:34:24,016 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 13:34:24,016 - __main__ - INFO -   roc_auc: 0.6027
+2025-08-12 13:34:24,016 - __main__ - INFO -   precision: 0.7319
+2025-08-12 13:34:24,016 - __main__ - INFO -   recall: 0.2404
+2025-08-12 13:34:24,016 - __main__ - INFO -   f1: 0.3619
+2025-08-12 13:34:24,016 - __main__ - INFO -   accuracy: 0.4658
+2025-08-12 13:34:24,016 - __main__ - INFO -   expected_profit: 1.3915
+2025-08-12 13:34:24,016 - __main__ - INFO -   win_rate: 0.7319
+2025-08-12 13:34:24,016 - __main__ - WARNING - ⚠️ WARNING: Win rate 73.2% seems too high!
+2025-08-12 13:34:24,016 - __main__ - WARNING -   This may indicate data leakage or overfitting
+2025-08-12 13:34:24,016 - __main__ - WARNING -   Expected win rate for crypto trading: 40-60%
+2025-08-12 13:34:24,256 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-12 13:34:35,263 - __main__ - INFO - 
+Best model for BUY: CatBoost
+2025-08-12 13:34:35,263 - __main__ - INFO - Expected profit: 1.3915
+2025-08-12 13:34:35,288 - __main__ - INFO - 
+==================================================
+2025-08-12 13:34:35,289 - __main__ - INFO - Performance by Market Regime - BUY
+2025-08-12 13:34:35,289 - __main__ - INFO - ==================================================
+2025-08-12 13:34:35,291 - __main__ - INFO - 
+BULL Market:
+2025-08-12 13:34:35,291 - __main__ - INFO -   Samples: 5281
+2025-08-12 13:34:35,291 - __main__ - INFO -   Actual Win Rate: 63.26%
+2025-08-12 13:34:35,291 - __main__ - INFO -   Predicted Win Rate: 20.53%
+2025-08-12 13:34:35,291 - __main__ - INFO -   Accuracy: 46.20%
+2025-08-12 13:34:35,291 - __main__ - INFO -   Expected Profit: 138.38%
+2025-08-12 13:34:35,291 - __main__ - INFO -   ✅ RECOMMENDED - Trade this signal in BULL
+2025-08-12 13:34:35,292 - __main__ - INFO - 
+NEUTRAL Market:
+2025-08-12 13:34:35,292 - __main__ - INFO -   Samples: 5245
+2025-08-12 13:34:35,292 - __main__ - INFO -   Actual Win Rate: 62.82%
+2025-08-12 13:34:35,292 - __main__ - INFO -   Predicted Win Rate: 20.51%
+2025-08-12 13:34:35,292 - __main__ - INFO -   Accuracy: 46.33%
+2025-08-12 13:34:35,292 - __main__ - INFO -   Expected Profit: 133.83%
+2025-08-12 13:34:35,292 - __main__ - INFO -   ⚠️ CAUTION - Be selective in NEUTRAL
+2025-08-12 13:34:35,293 - __main__ - INFO - 
+BEAR Market:
+2025-08-12 13:34:35,293 - __main__ - INFO -   Samples: 2036
+2025-08-12 13:34:35,293 - __main__ - INFO -   Actual Win Rate: 62.92%
+2025-08-12 13:34:35,293 - __main__ - INFO -   Predicted Win Rate: 21.61%
+2025-08-12 13:34:35,293 - __main__ - INFO -   Accuracy: 48.18%
+2025-08-12 13:34:35,293 - __main__ - INFO -   Expected Profit: 154.09%
+2025-08-12 13:34:35,293 - __main__ - INFO -   ❌ AVOID - Don't trade BUY in BEAR
+2025-08-12 13:34:35,295 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_conflict: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_x_volume: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_x_rsi: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_x_total_score: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_numeric: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   weak_signal_wrong_regime: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   strong_signal_right_regime: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_neutral: 0.0000
+2025-08-12 13:34:35,295 - __main__ - INFO -   regime_signal_match: 0.0000
+2025-08-12 13:34:35,351 - __main__ - INFO - Feature importance plot saved to buy_catboost_importance.png
+2025-08-12 13:34:40,283 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-12 13:34:40,284 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-12 13:34:40,285 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-12 13:34:40,291 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-12 13:34:40,297 - __main__ - INFO - Best model saved to models/buy_best_model.pkl
+2025-08-12 13:34:40,298 - __main__ - INFO - 
+==================================================
+2025-08-12 13:34:40,298 - __main__ - INFO - Training SELL Models
+2025-08-12 13:34:40,298 - __main__ - INFO - ==================================================
+
+2025-08-12 13:34:40,298 - __main__ - INFO - Loading SELL data from database...
+2025-08-12 13:34:47,117 - __main__ - INFO - Loaded 108132 records for SELL
+2025-08-12 13:34:47,118 - __main__ - INFO - Market regime distribution:
+2025-08-12 13:34:47,123 - __main__ - INFO - market_regime
+NEUTRAL    49499
+BULL       32551
+BEAR       26082
+Name: count, dtype: int64
+2025-08-12 13:34:47,298 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 13:34:47,537 - __main__ - INFO - Sample weights distribution:
+2025-08-12 13:34:47,537 - __main__ - INFO -   Weight 2.0 (best): 14909 samples
+2025-08-12 13:34:47,537 - __main__ - INFO -   Weight 1.5 (good): 11173 samples
+2025-08-12 13:34:47,537 - __main__ - INFO -   Weight 1.0 (neutral): 49499 samples
+2025-08-12 13:34:47,537 - __main__ - INFO -   Weight 0.5 (bad): 32551 samples
+2025-08-12 13:34:47,537 - __main__ - INFO - Data split (temporal):
+2025-08-12 13:34:47,537 - __main__ - INFO -   Train: 75692 samples (first 70%)
+2025-08-12 13:34:47,537 - __main__ - INFO -   Val: 16219 samples (next 15%)
+2025-08-12 13:34:47,537 - __main__ - INFO -   Test: 16221 samples (last 15%)
+2025-08-12 13:34:47,537 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-04 23:30:00+00:00
+2025-08-12 13:34:47,538 - __main__ - INFO -   Val period: 2025-08-04 23:30:00+00:00 to 2025-08-07 09:30:00+00:00
+2025-08-12 13:34:47,538 - __main__ - INFO -   Test period: 2025-08-07 09:30:00+00:00 to 2025-08-09 22:30:00+00:00
+2025-08-12 13:34:47,571 - __main__ - INFO - Target distribution:
+2025-08-12 13:34:47,571 - __main__ - INFO -   Train: 47.47% win rate
+2025-08-12 13:34:47,571 - __main__ - INFO -   Val: 21.90% win rate
+2025-08-12 13:34:47,571 - __main__ - INFO -   Test: 16.95% win rate
+2025-08-12 13:34:47,571 - __main__ - INFO - Market regime in test set:
+2025-08-12 13:34:47,572 - __main__ - INFO - market_regime
+NEUTRAL    7406
+BULL       4871
+BEAR       3943
+Name: count, dtype: int64
+2025-08-12 13:34:47,572 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 13:34:51,203 - __main__ - INFO - XGBoost best AUC: 0.6032
+2025-08-12 13:34:51,203 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 13:34:59,718 - __main__ - INFO - LightGBM best AUC: 0.6833
+2025-08-12 13:34:59,718 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 13:35:06,679 - __main__ - INFO - CatBoost best AUC: 0.6901
+2025-08-12 13:35:06,679 - __main__ - INFO - 
+Training final models with sample weights...
+2025-08-12 13:35:06,939 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 13:35:06,939 - __main__ - INFO -   roc_auc: 0.2309
+2025-08-12 13:35:06,939 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:35:06,939 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:35:06,939 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:35:06,939 - __main__ - INFO -   accuracy: 0.8305
+2025-08-12 13:35:06,939 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:35:06,939 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:35:08,056 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 13:35:08,056 - __main__ - INFO -   roc_auc: 0.2300
+2025-08-12 13:35:08,056 - __main__ - INFO -   precision: 0.0466
+2025-08-12 13:35:08,056 - __main__ - INFO -   recall: 0.1066
+2025-08-12 13:35:08,056 - __main__ - INFO -   f1: 0.0649
+2025-08-12 13:35:08,056 - __main__ - INFO -   accuracy: 0.4794
+2025-08-12 13:35:08,056 - __main__ - INFO -   expected_profit: -2.7201
+2025-08-12 13:35:08,056 - __main__ - INFO -   win_rate: 0.0466
+2025-08-12 13:35:08,394 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 13:35:08,394 - __main__ - INFO -   roc_auc: 0.2218
+2025-08-12 13:35:08,394 - __main__ - INFO -   precision: 0.0526
+2025-08-12 13:35:08,394 - __main__ - INFO -   recall: 0.2026
+2025-08-12 13:35:08,394 - __main__ - INFO -   f1: 0.0835
+2025-08-12 13:35:08,394 - __main__ - INFO -   accuracy: 0.2463
+2025-08-12 13:35:08,394 - __main__ - INFO -   expected_profit: -2.6844
+2025-08-12 13:35:08,394 - __main__ - INFO -   win_rate: 0.0526
+2025-08-12 13:35:08,512 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-12 13:35:17,304 - __main__ - INFO - 
+Best model for SELL: XGBoost
+2025-08-12 13:35:17,305 - __main__ - INFO - Expected profit: 0.0000
+2025-08-12 13:36:27,721 - __main__ - INFO - Running in QUICK TEST mode with reduced trials
+2025-08-12 13:36:27,721 - __main__ - INFO - 
+==================================================
+2025-08-12 13:36:27,722 - __main__ - INFO - Training BUY Models
+2025-08-12 13:36:27,722 - __main__ - INFO - ==================================================
+
+2025-08-12 13:36:27,722 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 13:36:33,522 - __main__ - INFO - Loaded 83743 records for BUY
+2025-08-12 13:36:33,522 - __main__ - INFO - Market regime distribution:
+2025-08-12 13:36:33,526 - __main__ - INFO - market_regime
+BULL       35580
+NEUTRAL    34947
+BEAR       13216
+Name: count, dtype: int64
+2025-08-12 13:36:33,664 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 13:36:33,879 - __main__ - INFO - Sample weights distribution:
+2025-08-12 13:36:33,879 - __main__ - INFO -   Weight 2.0 (best): 20993 samples
+2025-08-12 13:36:33,879 - __main__ - INFO -   Weight 1.5 (good): 14587 samples
+2025-08-12 13:36:33,879 - __main__ - INFO -   Weight 1.0 (neutral): 34947 samples
+2025-08-12 13:36:33,880 - __main__ - INFO -   Weight 0.5 (bad): 13216 samples
+2025-08-12 13:36:33,880 - __main__ - INFO - Data split (temporal):
+2025-08-12 13:36:33,880 - __main__ - INFO -   Train: 58620 samples (first 70%)
+2025-08-12 13:36:33,880 - __main__ - INFO -   Val: 12561 samples (next 15%)
+2025-08-12 13:36:33,880 - __main__ - INFO -   Test: 12562 samples (last 15%)
+2025-08-12 13:36:33,881 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-06 07:30:00+00:00
+2025-08-12 13:36:33,881 - __main__ - INFO -   Val period: 2025-08-06 07:30:00+00:00 to 2025-08-08 00:30:00+00:00
+2025-08-12 13:36:33,881 - __main__ - INFO -   Test period: 2025-08-08 00:30:00+00:00 to 2025-08-09 22:30:00+00:00
+2025-08-12 13:36:33,909 - __main__ - INFO - Target distribution:
+2025-08-12 13:36:33,909 - __main__ - INFO -   Train: 35.80% win rate
+2025-08-12 13:36:33,909 - __main__ - INFO -   Val: 87.77% win rate
+2025-08-12 13:36:33,909 - __main__ - INFO -   Test: 63.02% win rate
+2025-08-12 13:36:33,909 - __main__ - INFO - Market regime in test set:
+2025-08-12 13:36:33,910 - __main__ - INFO - market_regime
+BULL       5281
+NEUTRAL    5245
+BEAR       2036
+Name: count, dtype: int64
+2025-08-12 13:36:33,910 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 13:36:37,343 - __main__ - INFO - XGBoost best AUC: 0.6197
+2025-08-12 13:36:37,343 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 13:36:44,121 - __main__ - INFO - LightGBM best AUC: 0.6158
+2025-08-12 13:36:44,122 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 13:36:50,730 - __main__ - INFO - CatBoost best AUC: 0.5728
+2025-08-12 13:36:50,731 - __main__ - INFO - 
+Training final models with sample weights...
+2025-08-12 13:36:50,953 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 13:36:50,953 - __main__ - INFO -   roc_auc: 0.5629
+2025-08-12 13:36:50,953 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:36:50,953 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:36:50,953 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:36:50,953 - __main__ - INFO -   accuracy: 0.3698
+2025-08-12 13:36:50,953 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:36:50,953 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:36:52,093 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 13:36:52,093 - __main__ - INFO -   roc_auc: 0.2923
+2025-08-12 13:36:52,093 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:36:52,093 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:36:52,093 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:36:52,093 - __main__ - INFO -   accuracy: 0.3698
+2025-08-12 13:36:52,093 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:36:52,093 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:36:52,486 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 13:36:52,486 - __main__ - INFO -   roc_auc: 0.6027
+2025-08-12 13:36:52,486 - __main__ - INFO -   precision: 0.7319
+2025-08-12 13:36:52,486 - __main__ - INFO -   recall: 0.2404
+2025-08-12 13:36:52,487 - __main__ - INFO -   f1: 0.3619
+2025-08-12 13:36:52,487 - __main__ - INFO -   accuracy: 0.4658
+2025-08-12 13:36:52,487 - __main__ - INFO -   expected_profit: 1.3915
+2025-08-12 13:36:52,487 - __main__ - INFO -   win_rate: 0.7319
+2025-08-12 13:36:52,487 - __main__ - WARNING - ⚠️ WARNING: Win rate 73.2% seems too high!
+2025-08-12 13:36:52,487 - __main__ - WARNING -   This may indicate data leakage or overfitting
+2025-08-12 13:36:52,487 - __main__ - WARNING -   Expected win rate for crypto trading: 40-60%
+2025-08-12 13:36:52,714 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-12 13:36:54,864 - __main__ - INFO - 
+Best model for BUY: CatBoost
+2025-08-12 13:36:54,864 - __main__ - INFO - Expected profit: 1.3915
+2025-08-12 13:36:54,882 - __main__ - INFO - 
+==================================================
+2025-08-12 13:36:54,882 - __main__ - INFO - Performance by Market Regime - BUY
+2025-08-12 13:36:54,882 - __main__ - INFO - ==================================================
+2025-08-12 13:36:54,886 - __main__ - INFO - 
+BULL Market:
+2025-08-12 13:36:54,887 - __main__ - INFO -   Samples: 5281
+2025-08-12 13:36:54,887 - __main__ - INFO -   Actual Win Rate: 63.26%
+2025-08-12 13:36:54,887 - __main__ - INFO -   Predicted Win Rate: 20.53%
+2025-08-12 13:36:54,887 - __main__ - INFO -   Accuracy: 46.20%
+2025-08-12 13:36:54,887 - __main__ - INFO -   Expected Profit: 138.38%
+2025-08-12 13:36:54,887 - __main__ - INFO -   ✅ RECOMMENDED - Trade this signal in BULL
+2025-08-12 13:36:54,888 - __main__ - INFO - 
+NEUTRAL Market:
+2025-08-12 13:36:54,888 - __main__ - INFO -   Samples: 5245
+2025-08-12 13:36:54,888 - __main__ - INFO -   Actual Win Rate: 62.82%
+2025-08-12 13:36:54,888 - __main__ - INFO -   Predicted Win Rate: 20.51%
+2025-08-12 13:36:54,888 - __main__ - INFO -   Accuracy: 46.33%
+2025-08-12 13:36:54,888 - __main__ - INFO -   Expected Profit: 133.83%
+2025-08-12 13:36:54,888 - __main__ - INFO -   ⚠️ CAUTION - Be selective in NEUTRAL
+2025-08-12 13:36:54,889 - __main__ - INFO - 
+BEAR Market:
+2025-08-12 13:36:54,889 - __main__ - INFO -   Samples: 2036
+2025-08-12 13:36:54,889 - __main__ - INFO -   Actual Win Rate: 62.92%
+2025-08-12 13:36:54,889 - __main__ - INFO -   Predicted Win Rate: 21.61%
+2025-08-12 13:36:54,889 - __main__ - INFO -   Accuracy: 48.18%
+2025-08-12 13:36:54,889 - __main__ - INFO -   Expected Profit: 154.09%
+2025-08-12 13:36:54,889 - __main__ - INFO -   ❌ AVOID - Don't trade BUY in BEAR
+2025-08-12 13:36:54,893 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_conflict: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_x_volume: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_x_rsi: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_x_total_score: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_numeric: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   weak_signal_wrong_regime: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   strong_signal_right_regime: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_neutral: 0.0000
+2025-08-12 13:36:54,893 - __main__ - INFO -   regime_signal_match: 0.0000
+2025-08-12 13:36:54,948 - __main__ - INFO - Feature importance plot saved to buy_catboost_importance.png
+2025-08-12 13:36:56,572 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-12 13:36:56,572 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-12 13:36:56,574 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-12 13:36:56,580 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-12 13:36:56,586 - __main__ - INFO - Best model saved to models/buy_best_model.pkl
+2025-08-12 13:36:56,587 - __main__ - INFO - 
+==================================================
+2025-08-12 13:36:56,587 - __main__ - INFO - Training SELL Models
+2025-08-12 13:36:56,587 - __main__ - INFO - ==================================================
+
+2025-08-12 13:36:56,587 - __main__ - INFO - Loading SELL data from database...
+2025-08-12 13:37:03,839 - __main__ - INFO - Loaded 108132 records for SELL
+2025-08-12 13:37:03,840 - __main__ - INFO - Market regime distribution:
+2025-08-12 13:37:03,845 - __main__ - INFO - market_regime
+NEUTRAL    49499
+BULL       32551
+BEAR       26082
+Name: count, dtype: int64
+2025-08-12 13:37:04,033 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 13:37:04,360 - __main__ - INFO - Sample weights distribution:
+2025-08-12 13:37:04,360 - __main__ - INFO -   Weight 2.0 (best): 14909 samples
+2025-08-12 13:37:04,360 - __main__ - INFO -   Weight 1.5 (good): 11173 samples
+2025-08-12 13:37:04,360 - __main__ - INFO -   Weight 1.0 (neutral): 49499 samples
+2025-08-12 13:37:04,360 - __main__ - INFO -   Weight 0.5 (bad): 32551 samples
+2025-08-12 13:37:04,360 - __main__ - INFO - Data split (temporal):
+2025-08-12 13:37:04,360 - __main__ - INFO -   Train: 75692 samples (first 70%)
+2025-08-12 13:37:04,360 - __main__ - INFO -   Val: 16219 samples (next 15%)
+2025-08-12 13:37:04,360 - __main__ - INFO -   Test: 16221 samples (last 15%)
+2025-08-12 13:37:04,361 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-04 23:30:00+00:00
+2025-08-12 13:37:04,362 - __main__ - INFO -   Val period: 2025-08-04 23:30:00+00:00 to 2025-08-07 09:30:00+00:00
+2025-08-12 13:37:04,362 - __main__ - INFO -   Test period: 2025-08-07 09:30:00+00:00 to 2025-08-09 22:30:00+00:00
+2025-08-12 13:37:04,406 - __main__ - INFO - Target distribution:
+2025-08-12 13:37:04,407 - __main__ - INFO -   Train: 47.47% win rate
+2025-08-12 13:37:04,407 - __main__ - INFO -   Val: 21.90% win rate
+2025-08-12 13:37:04,407 - __main__ - INFO -   Test: 16.95% win rate
+2025-08-12 13:37:04,407 - __main__ - INFO - Market regime in test set:
+2025-08-12 13:37:04,409 - __main__ - INFO - market_regime
+NEUTRAL    7406
+BULL       4871
+BEAR       3943
+Name: count, dtype: int64
+2025-08-12 13:37:04,409 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 13:37:08,323 - __main__ - INFO - XGBoost best AUC: 0.6032
+2025-08-12 13:37:08,323 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 13:37:16,374 - __main__ - INFO - LightGBM best AUC: 0.6833
+2025-08-12 13:37:16,374 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 13:37:23,851 - __main__ - INFO - CatBoost best AUC: 0.6901
+2025-08-12 13:37:23,851 - __main__ - INFO - 
+Training final models with sample weights...
+2025-08-12 13:37:24,118 - __main__ - INFO - 
+XGBoost Performance:
+2025-08-12 13:37:24,118 - __main__ - INFO -   roc_auc: 0.2309
+2025-08-12 13:37:24,118 - __main__ - INFO -   precision: 0.0000
+2025-08-12 13:37:24,118 - __main__ - INFO -   recall: 0.0000
+2025-08-12 13:37:24,118 - __main__ - INFO -   f1: 0.0000
+2025-08-12 13:37:24,118 - __main__ - INFO -   accuracy: 0.8305
+2025-08-12 13:37:24,118 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 13:37:24,118 - __main__ - INFO -   win_rate: 0.0000
+2025-08-12 13:37:25,207 - __main__ - INFO - 
+LightGBM Performance:
+2025-08-12 13:37:25,207 - __main__ - INFO -   roc_auc: 0.2300
+2025-08-12 13:37:25,207 - __main__ - INFO -   precision: 0.0466
+2025-08-12 13:37:25,207 - __main__ - INFO -   recall: 0.1066
+2025-08-12 13:37:25,207 - __main__ - INFO -   f1: 0.0649
+2025-08-12 13:37:25,207 - __main__ - INFO -   accuracy: 0.4794
+2025-08-12 13:37:25,207 - __main__ - INFO -   expected_profit: -2.7201
+2025-08-12 13:37:25,207 - __main__ - INFO -   win_rate: 0.0466
+2025-08-12 13:37:25,560 - __main__ - INFO - 
+CatBoost Performance:
+2025-08-12 13:37:25,560 - __main__ - INFO -   roc_auc: 0.2218
+2025-08-12 13:37:25,560 - __main__ - INFO -   precision: 0.0526
+2025-08-12 13:37:25,560 - __main__ - INFO -   recall: 0.2026
+2025-08-12 13:37:25,560 - __main__ - INFO -   f1: 0.0835
+2025-08-12 13:37:25,560 - __main__ - INFO -   accuracy: 0.2463
+2025-08-12 13:37:25,560 - __main__ - INFO -   expected_profit: -2.6844
+2025-08-12 13:37:25,560 - __main__ - INFO -   win_rate: 0.0526
+2025-08-12 13:37:25,681 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-12 13:37:27,723 - __main__ - INFO - 
+Best model for SELL: XGBoost
+2025-08-12 13:37:27,723 - __main__ - INFO - Expected profit: 0.0000
+2025-08-12 14:08:10,122 - __main__ - INFO - ============================================================
+2025-08-12 14:08:10,122 - __main__ - INFO - STARTING ML MODEL TRAINING WITH DATA LEAKAGE PREVENTION
+2025-08-12 14:08:10,122 - __main__ - INFO - ============================================================
+2025-08-12 14:08:10,122 - __main__ - INFO - Running in QUICK TEST mode with reduced trials
+2025-08-12 14:08:10,122 - __main__ - INFO - 
+========================================
+2025-08-12 14:08:10,122 - __main__ - INFO - TRAINING BUY MODEL
+2025-08-12 14:08:10,122 - __main__ - INFO - ========================================
+2025-08-12 14:08:10,123 - __main__ - INFO - 
+==================================================
+2025-08-12 14:08:10,123 - __main__ - INFO - Training BUY Models
+2025-08-12 14:08:10,123 - __main__ - INFO - ==================================================
+
+2025-08-12 14:08:10,123 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 14:08:16,648 - __main__ - INFO - ✅ No dangerous columns found in loaded data
+2025-08-12 14:08:16,649 - __main__ - INFO - Loaded 83835 records for BUY
+2025-08-12 14:08:16,649 - __main__ - INFO - Market regime distribution:
+2025-08-12 14:08:16,653 - __main__ - INFO - market_regime
+BULL       35672
+NEUTRAL    34947
+BEAR       13216
+Name: count, dtype: int64
+2025-08-12 14:08:16,653 - __main__ - INFO - Base win rate: 47.64%
+2025-08-12 14:08:16,796 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 14:08:16,842 - __main__ - INFO - Selected 92 features for training
+2025-08-12 14:08:16,970 - __main__ - INFO - Sample weights distribution:
+2025-08-12 14:08:16,970 - __main__ - INFO -   Weight 2.0 (best): 21001 samples
+2025-08-12 14:08:16,970 - __main__ - INFO -   Weight 1.5 (good): 14671 samples
+2025-08-12 14:08:16,970 - __main__ - INFO -   Weight 1.0 (neutral): 34947 samples
+2025-08-12 14:08:16,970 - __main__ - INFO -   Weight 0.5 (bad): 13216 samples
+2025-08-12 14:08:16,970 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-12 14:08:16,970 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-12 14:08:16,970 - __main__ - INFO -   Train: 58684 samples (first 70%)
+2025-08-12 14:08:16,970 - __main__ - INFO -   Val: 12575 samples (next 15%)
+2025-08-12 14:08:16,970 - __main__ - INFO -   Test: 12576 samples (last 15%)
+2025-08-12 14:08:16,971 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-06 07:45:00+00:00
+2025-08-12 14:08:16,971 - __main__ - INFO -   Val period: 2025-08-06 07:45:00+00:00 to 2025-08-08 00:45:00+00:00
+2025-08-12 14:08:16,971 - __main__ - INFO -   Test period: 2025-08-08 00:45:00+00:00 to 2025-08-09 23:00:00+00:00
+2025-08-12 14:08:16,971 - __main__ - INFO - 
+Target distribution:
+2025-08-12 14:08:16,971 - __main__ - INFO -   Train: 35.85% win rate
+2025-08-12 14:08:16,971 - __main__ - INFO -   Val: 87.68% win rate
+2025-08-12 14:08:16,971 - __main__ - INFO -   Test: 62.59% win rate
+2025-08-12 14:08:16,971 - __main__ - WARNING - ⚠️ Large distribution shift between train and test!
+2025-08-12 14:08:16,971 - __main__ - WARNING -   This is expected in financial data but may affect performance
+2025-08-12 14:08:16,971 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 14:08:17,855 - __main__ - INFO - XGBoost best AUC: 0.4946
+2025-08-12 14:08:17,855 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 14:08:19,141 - __main__ - INFO - LightGBM best AUC: 0.5945
+2025-08-12 14:08:19,141 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 14:08:20,191 - __main__ - INFO - CatBoost best AUC: 0.6040
+2025-08-12 14:08:20,191 - __main__ - INFO - 
+Training final models...
+2025-08-12 14:08:20,396 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:08:20,404 - __main__ - INFO - 
+XGBoost Performance (threshold=0.30):
+2025-08-12 14:08:20,404 - __main__ - INFO -   roc_auc: 0.3614
+2025-08-12 14:08:20,404 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:08:20,404 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:08:20,404 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:08:20,404 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:08:20,404 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:08:20,404 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:08:20,404 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:08:20,404 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:08:20,785 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:08:20,792 - __main__ - INFO - 
+LightGBM Performance (threshold=0.30):
+2025-08-12 14:08:20,792 - __main__ - INFO -   roc_auc: 0.5863
+2025-08-12 14:08:20,792 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:08:20,792 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:08:20,792 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:08:20,792 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:08:20,792 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:08:20,792 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:08:20,792 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:08:20,792 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:08:20,981 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:08:20,986 - __main__ - INFO - 
+CatBoost Performance (threshold=0.30):
+2025-08-12 14:08:20,986 - __main__ - INFO -   roc_auc: 0.5812
+2025-08-12 14:08:20,986 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:08:20,986 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:08:20,986 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:08:20,987 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:08:20,987 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:08:20,987 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:08:20,987 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:08:20,987 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:08:21,209 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-12 14:08:24,480 - __main__ - INFO - 
+Best model for BUY: XGBoost
+2025-08-12 14:08:24,480 - __main__ - INFO - Win rate: 62.6%
+2025-08-12 14:08:24,480 - __main__ - INFO - Trades taken: 100.0%
+2025-08-12 14:08:24,480 - __main__ - INFO - Expected profit: 75.52%
+2025-08-12 14:08:24,487 - __main__ - INFO - 
+==================================================
+2025-08-12 14:08:24,487 - __main__ - INFO - Performance by Market Regime - BUY
+2025-08-12 14:08:24,487 - __main__ - INFO - Using threshold: 0.30
+2025-08-12 14:08:24,487 - __main__ - INFO - ==================================================
+2025-08-12 14:08:24,489 - __main__ - INFO - 
+BULL Market:
+2025-08-12 14:08:24,489 - __main__ - INFO -   Total samples: 12576
+2025-08-12 14:08:24,489 - __main__ - INFO -   Trades taken: 12576 (100.0%)
+2025-08-12 14:08:24,489 - __main__ - INFO -   Win rate on taken trades: 62.6%
+2025-08-12 14:08:24,489 - __main__ - INFO -   Expected profit per trade: 75.52%
+2025-08-12 14:08:24,489 - __main__ - INFO -   ✅ EXCELLENT - Trade BUY in BULL
+2025-08-12 14:08:24,494 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 14:08:24,494 - __main__ - INFO -   market_regime_encoded: 0.0434
+2025-08-12 14:08:24,494 - __main__ - INFO -   regime_conflict: 0.0388
+2025-08-12 14:08:24,494 - __main__ - INFO -   regime_signal_match: 0.0261
+2025-08-12 14:08:24,494 - __main__ - INFO -   regime_x_rsi: 0.0196
+2025-08-12 14:08:24,494 - __main__ - INFO -   regime_neutral: 0.0182
+2025-08-12 14:08:24,554 - __main__ - INFO - Feature importance plot saved to buy_xgboost_importance.png
+2025-08-12 14:08:43,326 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-12 14:08:43,328 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-12 14:08:43,330 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-12 14:08:43,338 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-12 14:08:43,338 - __main__ - INFO - Best model saved to models/buy_best_model.pkl with threshold 0.30
+2025-08-12 14:08:43,338 - __main__ - INFO - 
+========================================
+2025-08-12 14:08:43,338 - __main__ - INFO - TRAINING SELL MODEL
+2025-08-12 14:08:43,338 - __main__ - INFO - ========================================
+2025-08-12 14:08:43,339 - __main__ - INFO - 
+==================================================
+2025-08-12 14:08:43,339 - __main__ - INFO - Training SELL Models
+2025-08-12 14:08:43,339 - __main__ - INFO - ==================================================
+
+2025-08-12 14:08:43,339 - __main__ - INFO - Loading SELL data from database...
+2025-08-12 14:08:50,618 - __main__ - INFO - ✅ No dangerous columns found in loaded data
+2025-08-12 14:08:50,618 - __main__ - INFO - Loaded 108411 records for SELL
+2025-08-12 14:08:50,618 - __main__ - INFO - Market regime distribution:
+2025-08-12 14:08:50,622 - __main__ - INFO - market_regime
+NEUTRAL    49499
+BULL       32830
+BEAR       26082
+Name: count, dtype: int64
+2025-08-12 14:08:50,623 - __main__ - INFO - Base win rate: 39.11%
+2025-08-12 14:08:50,829 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 14:08:50,891 - __main__ - INFO - Selected 92 features for training
+2025-08-12 14:08:51,052 - __main__ - INFO - Sample weights distribution:
+2025-08-12 14:08:51,052 - __main__ - INFO -   Weight 2.0 (best): 14909 samples
+2025-08-12 14:08:51,052 - __main__ - INFO -   Weight 1.5 (good): 11173 samples
+2025-08-12 14:08:51,052 - __main__ - INFO -   Weight 1.0 (neutral): 49499 samples
+2025-08-12 14:08:51,052 - __main__ - INFO -   Weight 0.5 (bad): 32830 samples
+2025-08-12 14:08:51,053 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-12 14:08:51,053 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-12 14:08:51,053 - __main__ - INFO -   Train: 75887 samples (first 70%)
+2025-08-12 14:08:51,053 - __main__ - INFO -   Val: 16261 samples (next 15%)
+2025-08-12 14:08:51,053 - __main__ - INFO -   Test: 16263 samples (last 15%)
+2025-08-12 14:08:51,053 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-05 00:00:00+00:00
+2025-08-12 14:08:51,053 - __main__ - INFO -   Val period: 2025-08-05 00:00:00+00:00 to 2025-08-07 11:00:00+00:00
+2025-08-12 14:08:51,053 - __main__ - INFO -   Test period: 2025-08-07 11:00:00+00:00 to 2025-08-09 23:00:00+00:00
+2025-08-12 14:08:51,053 - __main__ - INFO - 
+Target distribution:
+2025-08-12 14:08:51,053 - __main__ - INFO -   Train: 47.56% win rate
+2025-08-12 14:08:51,053 - __main__ - INFO -   Val: 20.96% win rate
+2025-08-12 14:08:51,053 - __main__ - INFO -   Test: 17.78% win rate
+2025-08-12 14:08:51,053 - __main__ - WARNING - ⚠️ Large distribution shift between train and test!
+2025-08-12 14:08:51,053 - __main__ - WARNING -   This is expected in financial data but may affect performance
+2025-08-12 14:08:51,053 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 14:08:52,396 - __main__ - INFO - XGBoost best AUC: 0.5957
+2025-08-12 14:08:52,396 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 14:08:54,841 - __main__ - INFO - LightGBM best AUC: 0.6158
+2025-08-12 14:08:54,841 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 14:08:57,280 - __main__ - INFO - CatBoost best AUC: 0.5736
+2025-08-12 14:08:57,280 - __main__ - INFO - 
+Training final models...
+2025-08-12 14:08:57,482 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:08:57,490 - __main__ - INFO - 
+XGBoost Performance (threshold=0.50):
+2025-08-12 14:08:57,490 - __main__ - INFO -   roc_auc: 0.2387
+2025-08-12 14:08:57,490 - __main__ - INFO -   precision: 0.0%
+2025-08-12 14:08:57,490 - __main__ - INFO -   recall: 0.0%
+2025-08-12 14:08:57,490 - __main__ - INFO -   f1: 0.0000
+2025-08-12 14:08:57,490 - __main__ - INFO -   accuracy: 82.2%
+2025-08-12 14:08:57,490 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:08:57,490 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 14:08:57,490 - __main__ - INFO -   win_rate: 0.0%
+2025-08-12 14:08:57,490 - __main__ - INFO -   trades_taken: 0.0% of signals
+2025-08-12 14:08:57,858 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:08:57,866 - __main__ - INFO - 
+LightGBM Performance (threshold=0.50):
+2025-08-12 14:08:57,867 - __main__ - INFO -   roc_auc: 0.2136
+2025-08-12 14:08:57,867 - __main__ - INFO -   precision: 5.1%
+2025-08-12 14:08:57,867 - __main__ - INFO -   recall: 17.6%
+2025-08-12 14:08:57,867 - __main__ - INFO -   f1: 0.0788
+2025-08-12 14:08:57,867 - __main__ - INFO -   accuracy: 26.9%
+2025-08-12 14:08:57,867 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:08:57,867 - __main__ - INFO -   expected_profit: -2.6954
+2025-08-12 14:08:57,867 - __main__ - INFO -   win_rate: 5.1%
+2025-08-12 14:08:57,867 - __main__ - INFO -   trades_taken: 61.5% of signals
+2025-08-12 14:08:58,122 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:08:58,129 - __main__ - INFO - 
+CatBoost Performance (threshold=0.50):
+2025-08-12 14:08:58,129 - __main__ - INFO -   roc_auc: 0.1926
+2025-08-12 14:08:58,129 - __main__ - INFO -   precision: 5.2%
+2025-08-12 14:08:58,129 - __main__ - INFO -   recall: 18.6%
+2025-08-12 14:08:58,129 - __main__ - INFO -   f1: 0.0814
+2025-08-12 14:08:58,129 - __main__ - INFO -   accuracy: 25.2%
+2025-08-12 14:08:58,129 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:08:58,129 - __main__ - INFO -   expected_profit: -2.6876
+2025-08-12 14:08:58,129 - __main__ - INFO -   win_rate: 5.2%
+2025-08-12 14:08:58,129 - __main__ - INFO -   trades_taken: 63.7% of signals
+2025-08-12 14:08:58,254 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-12 14:09:07,960 - __main__ - WARNING - No model meets minimum criteria
+2025-08-12 14:09:07,967 - __main__ - INFO - 
+==================================================
+2025-08-12 14:09:07,967 - __main__ - INFO - Performance by Market Regime - SELL
+2025-08-12 14:09:07,967 - __main__ - INFO - Using threshold: 0.50
+2025-08-12 14:09:07,967 - __main__ - INFO - ==================================================
+2025-08-12 14:09:07,968 - __main__ - INFO - 
+BULL Market: No trades taken at threshold 0.50
+2025-08-12 14:09:07,969 - __main__ - INFO - 
+NEUTRAL Market: No trades taken at threshold 0.50
+2025-08-12 14:09:07,970 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_conflict: 0.0525
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_numeric: 0.0500
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_signal_match: 0.0407
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_neutral: 0.0373
+2025-08-12 14:09:07,970 - __main__ - INFO -   market_regime_encoded: 0.0366
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_x_total_score: 0.0245
+2025-08-12 14:09:07,970 - __main__ - INFO -   regime_x_rsi: 0.0158
+2025-08-12 14:09:08,023 - __main__ - INFO - Feature importance plot saved to sell_xgboost_importance.png
+2025-08-12 14:09:09,793 - __main__ - INFO - Preprocessor saved to models/sell_preprocessor.pkl
+2025-08-12 14:09:09,795 - __main__ - INFO - XGBoost model saved to models/sell_xgboost_model.pkl
+2025-08-12 14:09:09,796 - __main__ - INFO - LightGBM model saved to models/sell_lightgbm_model.pkl
+2025-08-12 14:09:09,805 - __main__ - INFO - CatBoost model saved to models/sell_catboost_model.pkl
+2025-08-12 14:09:09,805 - __main__ - INFO - Best model saved to models/sell_best_model.pkl with threshold 0.50
+2025-08-12 14:09:09,805 - __main__ - INFO - 
+============================================================
+2025-08-12 14:09:09,805 - __main__ - INFO - TRAINING COMPLETE - SUMMARY
+2025-08-12 14:09:09,805 - __main__ - INFO - ============================================================
+2025-08-12 14:09:09,805 - __main__ - INFO - 
+📊 BUY Model Performance:
+2025-08-12 14:09:09,805 - __main__ - INFO - Best Model: XGBoost
+2025-08-12 14:09:09,805 - __main__ - INFO - Optimal Threshold: 0.30
+2025-08-12 14:09:09,805 - __main__ - INFO -   roc_auc: 0.3614
+2025-08-12 14:09:09,805 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:09:09,805 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:09:09,805 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:09:09,805 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:09:09,805 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:09:09,805 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:09:09,805 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:09:09,805 - __main__ - INFO -   trades_taken: 100.0%
+2025-08-12 14:09:09,805 - __main__ - INFO - 
+📊 SELL Model Performance:
+2025-08-12 14:09:09,805 - __main__ - INFO - Best Model: XGBoost
+2025-08-12 14:09:09,805 - __main__ - INFO - Optimal Threshold: 0.50
+2025-08-12 14:09:09,806 - __main__ - INFO -   roc_auc: 0.2387
+2025-08-12 14:09:09,806 - __main__ - INFO -   precision: 0.0%
+2025-08-12 14:09:09,806 - __main__ - INFO -   recall: 0.0%
+2025-08-12 14:09:09,806 - __main__ - INFO -   f1: 0.0000
+2025-08-12 14:09:09,806 - __main__ - INFO -   accuracy: 82.2%
+2025-08-12 14:09:09,806 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:09:09,806 - __main__ - INFO -   expected_profit: 0.0000
+2025-08-12 14:09:09,806 - __main__ - INFO -   win_rate: 0.0%
+2025-08-12 14:09:09,806 - __main__ - INFO -   trades_taken: 0.0%
+2025-08-12 14:09:09,806 - __main__ - INFO - 
+============================================================
+2025-08-12 14:09:09,806 - __main__ - INFO - RECOMMENDATIONS
+2025-08-12 14:09:09,806 - __main__ - INFO - ============================================================
+2025-08-12 14:09:09,806 - __main__ - INFO - ⚠️ BUY model needs further tuning or more conservative thresholds
+2025-08-12 14:09:09,806 - __main__ - INFO - ⚠️ SELL model needs further tuning or more conservative thresholds
+2025-08-12 14:09:09,806 - __main__ - INFO - 
+💡 Remember: The goal is to FILTER signals, not predict all of them!
+2025-08-12 14:09:09,806 - __main__ - INFO -    Target: 60-70% win rate on 20-30% of signals
+2025-08-12 14:09:43,962 - __main__ - INFO - ============================================================
+2025-08-12 14:09:43,962 - __main__ - INFO - STARTING ML MODEL TRAINING WITH DATA LEAKAGE PREVENTION
+2025-08-12 14:09:43,962 - __main__ - INFO - ============================================================
+2025-08-12 14:09:43,962 - __main__ - INFO - 
+========================================
+2025-08-12 14:09:43,962 - __main__ - INFO - TRAINING BUY MODEL
+2025-08-12 14:09:43,962 - __main__ - INFO - ========================================
+2025-08-12 14:09:43,963 - __main__ - INFO - 
+==================================================
+2025-08-12 14:09:43,963 - __main__ - INFO - Training BUY Models
+2025-08-12 14:09:43,963 - __main__ - INFO - ==================================================
+
+2025-08-12 14:09:43,963 - __main__ - INFO - Loading BUY data from database...
+2025-08-12 14:09:49,973 - __main__ - INFO - ✅ No dangerous columns found in loaded data
+2025-08-12 14:09:49,975 - __main__ - INFO - Loaded 83835 records for BUY
+2025-08-12 14:09:49,975 - __main__ - INFO - Market regime distribution:
+2025-08-12 14:09:49,979 - __main__ - INFO - market_regime
+BULL       35672
+NEUTRAL    34947
+BEAR       13216
+Name: count, dtype: int64
+2025-08-12 14:09:49,979 - __main__ - INFO - Base win rate: 47.64%
+2025-08-12 14:09:50,118 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 14:09:50,163 - __main__ - INFO - Selected 92 features for training
+2025-08-12 14:09:50,298 - __main__ - INFO - Sample weights distribution:
+2025-08-12 14:09:50,298 - __main__ - INFO -   Weight 2.0 (best): 21001 samples
+2025-08-12 14:09:50,298 - __main__ - INFO -   Weight 1.5 (good): 14671 samples
+2025-08-12 14:09:50,298 - __main__ - INFO -   Weight 1.0 (neutral): 34947 samples
+2025-08-12 14:09:50,298 - __main__ - INFO -   Weight 0.5 (bad): 13216 samples
+2025-08-12 14:09:50,299 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-12 14:09:50,299 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-12 14:09:50,299 - __main__ - INFO -   Train: 58684 samples (first 70%)
+2025-08-12 14:09:50,299 - __main__ - INFO -   Val: 12575 samples (next 15%)
+2025-08-12 14:09:50,299 - __main__ - INFO -   Test: 12576 samples (last 15%)
+2025-08-12 14:09:50,299 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-06 07:45:00+00:00
+2025-08-12 14:09:50,299 - __main__ - INFO -   Val period: 2025-08-06 07:45:00+00:00 to 2025-08-08 00:45:00+00:00
+2025-08-12 14:09:50,299 - __main__ - INFO -   Test period: 2025-08-08 00:45:00+00:00 to 2025-08-09 23:00:00+00:00
+2025-08-12 14:09:50,299 - __main__ - INFO - 
+Target distribution:
+2025-08-12 14:09:50,299 - __main__ - INFO -   Train: 35.85% win rate
+2025-08-12 14:09:50,299 - __main__ - INFO -   Val: 87.68% win rate
+2025-08-12 14:09:50,299 - __main__ - INFO -   Test: 62.59% win rate
+2025-08-12 14:09:50,299 - __main__ - WARNING - ⚠️ Large distribution shift between train and test!
+2025-08-12 14:09:50,299 - __main__ - WARNING -   This is expected in financial data but may affect performance
+2025-08-12 14:09:50,299 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 14:09:55,708 - __main__ - INFO - XGBoost best AUC: 0.5007
+2025-08-12 14:09:55,708 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 14:10:03,698 - __main__ - INFO - LightGBM best AUC: 0.6356
+2025-08-12 14:10:03,699 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 14:10:07,242 - __main__ - INFO - CatBoost best AUC: 0.6734
+2025-08-12 14:10:07,242 - __main__ - INFO - 
+Training final models...
+2025-08-12 14:10:07,426 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:10:07,433 - __main__ - INFO - 
+XGBoost Performance (threshold=0.30):
+2025-08-12 14:10:07,433 - __main__ - INFO -   roc_auc: 0.4045
+2025-08-12 14:10:07,433 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:10:07,433 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:07,433 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:10:07,433 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:10:07,433 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:10:07,433 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:10:07,433 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:10:07,433 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:10:07,741 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:10:07,749 - __main__ - INFO - 
+LightGBM Performance (threshold=0.30):
+2025-08-12 14:10:07,749 - __main__ - INFO -   roc_auc: 0.4912
+2025-08-12 14:10:07,749 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:10:07,749 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:07,749 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:10:07,749 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:10:07,749 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:10:07,749 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:10:07,749 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:10:07,749 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:10:07,919 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-12 14:10:07,924 - __main__ - INFO - 
+CatBoost Performance (threshold=0.30):
+2025-08-12 14:10:07,924 - __main__ - INFO -   roc_auc: 0.5266
+2025-08-12 14:10:07,924 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:10:07,924 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:07,924 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:10:07,925 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:10:07,925 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:10:07,925 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:10:07,925 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:10:07,925 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:10:08,157 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-12 14:10:10,686 - __main__ - INFO - 
+Best model for BUY: XGBoost
+2025-08-12 14:10:10,686 - __main__ - INFO - Win rate: 62.6%
+2025-08-12 14:10:10,686 - __main__ - INFO - Trades taken: 100.0%
+2025-08-12 14:10:10,686 - __main__ - INFO - Expected profit: 75.52%
+2025-08-12 14:10:10,691 - __main__ - INFO - 
+==================================================
+2025-08-12 14:10:10,691 - __main__ - INFO - Performance by Market Regime - BUY
+2025-08-12 14:10:10,691 - __main__ - INFO - Using threshold: 0.30
+2025-08-12 14:10:10,691 - __main__ - INFO - ==================================================
+2025-08-12 14:10:10,692 - __main__ - INFO - 
+BULL Market:
+2025-08-12 14:10:10,692 - __main__ - INFO -   Total samples: 12576
+2025-08-12 14:10:10,692 - __main__ - INFO -   Trades taken: 12576 (100.0%)
+2025-08-12 14:10:10,692 - __main__ - INFO -   Win rate on taken trades: 62.6%
+2025-08-12 14:10:10,692 - __main__ - INFO -   Expected profit per trade: 75.52%
+2025-08-12 14:10:10,692 - __main__ - INFO -   ✅ EXCELLENT - Trade BUY in BULL
+2025-08-12 14:10:10,696 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 14:10:10,696 - __main__ - INFO -   regime_signal_match: 0.0240
+2025-08-12 14:10:10,696 - __main__ - INFO -   regime_numeric: 0.0222
+2025-08-12 14:10:10,696 - __main__ - INFO -   regime_neutral: 0.0172
+2025-08-12 14:10:10,696 - __main__ - INFO -   regime_conflict: 0.0161
+2025-08-12 14:10:10,696 - __main__ - INFO -   regime_x_rsi: 0.0135
+2025-08-12 14:10:10,757 - __main__ - INFO - Feature importance plot saved to buy_xgboost_importance.png
+2025-08-12 14:10:11,530 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-12 14:10:11,532 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-12 14:10:11,533 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-12 14:10:11,540 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-12 14:10:11,540 - __main__ - INFO - Best model saved to models/buy_best_model.pkl with threshold 0.30
+2025-08-12 14:10:11,540 - __main__ - INFO - 
+========================================
+2025-08-12 14:10:11,540 - __main__ - INFO - TRAINING SELL MODEL
+2025-08-12 14:10:11,540 - __main__ - INFO - ========================================
+2025-08-12 14:10:11,541 - __main__ - INFO - 
+==================================================
+2025-08-12 14:10:11,541 - __main__ - INFO - Training SELL Models
+2025-08-12 14:10:11,541 - __main__ - INFO - ==================================================
+
+2025-08-12 14:10:11,541 - __main__ - INFO - Loading SELL data from database...
+2025-08-12 14:10:18,831 - __main__ - INFO - ✅ No dangerous columns found in loaded data
+2025-08-12 14:10:18,831 - __main__ - INFO - Loaded 108411 records for SELL
+2025-08-12 14:10:18,831 - __main__ - INFO - Market regime distribution:
+2025-08-12 14:10:18,836 - __main__ - INFO - market_regime
+NEUTRAL    49499
+BULL       32830
+BEAR       26082
+Name: count, dtype: int64
+2025-08-12 14:10:18,836 - __main__ - INFO - Base win rate: 39.11%
+2025-08-12 14:10:19,048 - __main__ - INFO - Engineered 10 market regime features
+2025-08-12 14:10:19,110 - __main__ - INFO - Selected 92 features for training
+2025-08-12 14:10:19,302 - __main__ - INFO - Sample weights distribution:
+2025-08-12 14:10:19,302 - __main__ - INFO -   Weight 2.0 (best): 14909 samples
+2025-08-12 14:10:19,302 - __main__ - INFO -   Weight 1.5 (good): 11173 samples
+2025-08-12 14:10:19,303 - __main__ - INFO -   Weight 1.0 (neutral): 49499 samples
+2025-08-12 14:10:19,303 - __main__ - INFO -   Weight 0.5 (bad): 32830 samples
+2025-08-12 14:10:19,303 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-12 14:10:19,303 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-12 14:10:19,303 - __main__ - INFO -   Train: 75887 samples (first 70%)
+2025-08-12 14:10:19,303 - __main__ - INFO -   Val: 16261 samples (next 15%)
+2025-08-12 14:10:19,303 - __main__ - INFO -   Test: 16263 samples (last 15%)
+2025-08-12 14:10:19,303 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-05 00:00:00+00:00
+2025-08-12 14:10:19,303 - __main__ - INFO -   Val period: 2025-08-05 00:00:00+00:00 to 2025-08-07 11:00:00+00:00
+2025-08-12 14:10:19,304 - __main__ - INFO -   Test period: 2025-08-07 11:00:00+00:00 to 2025-08-09 23:00:00+00:00
+2025-08-12 14:10:19,304 - __main__ - INFO - 
+Target distribution:
+2025-08-12 14:10:19,304 - __main__ - INFO -   Train: 47.56% win rate
+2025-08-12 14:10:19,304 - __main__ - INFO -   Val: 20.96% win rate
+2025-08-12 14:10:19,304 - __main__ - INFO -   Test: 17.78% win rate
+2025-08-12 14:10:19,304 - __main__ - WARNING - ⚠️ Large distribution shift between train and test!
+2025-08-12 14:10:19,304 - __main__ - WARNING -   This is expected in financial data but may affect performance
+2025-08-12 14:10:19,304 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-12 14:10:28,092 - __main__ - INFO - XGBoost best AUC: 0.5972
+2025-08-12 14:10:28,093 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-12 14:10:37,233 - __main__ - INFO - LightGBM best AUC: 0.6387
+2025-08-12 14:10:37,234 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-12 14:10:41,632 - __main__ - INFO - CatBoost best AUC: 0.5745
+2025-08-12 14:10:41,632 - __main__ - INFO - 
+Training final models...
+2025-08-12 14:10:41,859 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:10:41,871 - __main__ - INFO - 
+XGBoost Performance (threshold=0.50):
+2025-08-12 14:10:41,871 - __main__ - INFO -   roc_auc: 0.2210
+2025-08-12 14:10:41,871 - __main__ - INFO -   precision: 17.8%
+2025-08-12 14:10:41,871 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:41,871 - __main__ - INFO -   f1: 0.3020
+2025-08-12 14:10:41,871 - __main__ - INFO -   accuracy: 17.8%
+2025-08-12 14:10:41,871 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:10:41,871 - __main__ - INFO -   expected_profit: -1.9330
+2025-08-12 14:10:41,871 - __main__ - INFO -   win_rate: 17.8%
+2025-08-12 14:10:41,871 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-12 14:10:42,242 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:10:42,251 - __main__ - INFO - 
+LightGBM Performance (threshold=0.50):
+2025-08-12 14:10:42,251 - __main__ - INFO -   roc_auc: 0.2122
+2025-08-12 14:10:42,251 - __main__ - INFO -   precision: 5.2%
+2025-08-12 14:10:42,251 - __main__ - INFO -   recall: 18.6%
+2025-08-12 14:10:42,251 - __main__ - INFO -   f1: 0.0813
+2025-08-12 14:10:42,251 - __main__ - INFO -   accuracy: 25.2%
+2025-08-12 14:10:42,251 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:10:42,251 - __main__ - INFO -   expected_profit: -2.6879
+2025-08-12 14:10:42,251 - __main__ - INFO -   win_rate: 5.2%
+2025-08-12 14:10:42,251 - __main__ - INFO -   trades_taken: 63.6% of signals
+2025-08-12 14:10:42,589 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-12 14:10:42,595 - __main__ - INFO - 
+CatBoost Performance (threshold=0.50):
+2025-08-12 14:10:42,595 - __main__ - INFO -   roc_auc: 0.1938
+2025-08-12 14:10:42,595 - __main__ - INFO -   precision: 5.2%
+2025-08-12 14:10:42,595 - __main__ - INFO -   recall: 18.6%
+2025-08-12 14:10:42,595 - __main__ - INFO -   f1: 0.0814
+2025-08-12 14:10:42,595 - __main__ - INFO -   accuracy: 25.2%
+2025-08-12 14:10:42,595 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:10:42,595 - __main__ - INFO -   expected_profit: -2.6876
+2025-08-12 14:10:42,595 - __main__ - INFO -   win_rate: 5.2%
+2025-08-12 14:10:42,595 - __main__ - INFO -   trades_taken: 63.7% of signals
+2025-08-12 14:10:42,722 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-12 14:10:45,662 - __main__ - WARNING - No model meets minimum criteria
+2025-08-12 14:10:45,667 - __main__ - INFO - 
+==================================================
+2025-08-12 14:10:45,667 - __main__ - INFO - Performance by Market Regime - SELL
+2025-08-12 14:10:45,667 - __main__ - INFO - Using threshold: 0.50
+2025-08-12 14:10:45,667 - __main__ - INFO - ==================================================
+2025-08-12 14:10:45,669 - __main__ - INFO - 
+BULL Market:
+2025-08-12 14:10:45,669 - __main__ - INFO -   Total samples: 15488
+2025-08-12 14:10:45,669 - __main__ - INFO -   Trades taken: 15488 (100.0%)
+2025-08-12 14:10:45,669 - __main__ - INFO -   Win rate on taken trades: 18.5%
+2025-08-12 14:10:45,669 - __main__ - INFO -   Expected profit per trade: -189.05%
+2025-08-12 14:10:45,669 - __main__ - INFO -   ❌ AVOID - Don't trade SELL in BULL
+2025-08-12 14:10:45,669 - __main__ - INFO - 
+NEUTRAL Market:
+2025-08-12 14:10:45,669 - __main__ - INFO -   Total samples: 775
+2025-08-12 14:10:45,669 - __main__ - INFO -   Trades taken: 775 (100.0%)
+2025-08-12 14:10:45,669 - __main__ - INFO -   Win rate on taken trades: 3.6%
+2025-08-12 14:10:45,669 - __main__ - INFO -   Expected profit per trade: -278.32%
+2025-08-12 14:10:45,669 - __main__ - INFO -   ❌ AVOID - Don't trade SELL in NEUTRAL
+2025-08-12 14:10:45,671 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-12 14:10:45,671 - __main__ - INFO -   regime_numeric: 0.0471
+2025-08-12 14:10:45,671 - __main__ - INFO -   regime_signal_match: 0.0402
+2025-08-12 14:10:45,671 - __main__ - INFO -   market_regime_encoded: 0.0310
+2025-08-12 14:10:45,671 - __main__ - INFO -   regime_x_total_score: 0.0293
+2025-08-12 14:10:45,671 - __main__ - INFO -   regime_conflict: 0.0268
+2025-08-12 14:10:45,672 - __main__ - INFO -   regime_neutral: 0.0222
+2025-08-12 14:10:45,672 - __main__ - INFO -   regime_x_rsi: 0.0194
+2025-08-12 14:10:45,723 - __main__ - INFO - Feature importance plot saved to sell_xgboost_importance.png
+2025-08-12 14:10:46,551 - __main__ - INFO - Preprocessor saved to models/sell_preprocessor.pkl
+2025-08-12 14:10:46,552 - __main__ - INFO - XGBoost model saved to models/sell_xgboost_model.pkl
+2025-08-12 14:10:46,553 - __main__ - INFO - LightGBM model saved to models/sell_lightgbm_model.pkl
+2025-08-12 14:10:46,562 - __main__ - INFO - CatBoost model saved to models/sell_catboost_model.pkl
+2025-08-12 14:10:46,562 - __main__ - INFO - Best model saved to models/sell_best_model.pkl with threshold 0.50
+2025-08-12 14:10:46,562 - __main__ - INFO - 
+============================================================
+2025-08-12 14:10:46,562 - __main__ - INFO - TRAINING COMPLETE - SUMMARY
+2025-08-12 14:10:46,562 - __main__ - INFO - ============================================================
+2025-08-12 14:10:46,562 - __main__ - INFO - 
+📊 BUY Model Performance:
+2025-08-12 14:10:46,562 - __main__ - INFO - Best Model: XGBoost
+2025-08-12 14:10:46,562 - __main__ - INFO - Optimal Threshold: 0.30
+2025-08-12 14:10:46,562 - __main__ - INFO -   roc_auc: 0.4045
+2025-08-12 14:10:46,562 - __main__ - INFO -   precision: 62.6%
+2025-08-12 14:10:46,562 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:46,562 - __main__ - INFO -   f1: 0.7699
+2025-08-12 14:10:46,562 - __main__ - INFO -   accuracy: 62.6%
+2025-08-12 14:10:46,562 - __main__ - INFO -   threshold: 0.3000
+2025-08-12 14:10:46,562 - __main__ - INFO -   expected_profit: 0.7552
+2025-08-12 14:10:46,562 - __main__ - INFO -   win_rate: 62.6%
+2025-08-12 14:10:46,563 - __main__ - INFO -   trades_taken: 100.0%
+2025-08-12 14:10:46,563 - __main__ - INFO - 
+📊 SELL Model Performance:
+2025-08-12 14:10:46,563 - __main__ - INFO - Best Model: XGBoost
+2025-08-12 14:10:46,563 - __main__ - INFO - Optimal Threshold: 0.50
+2025-08-12 14:10:46,563 - __main__ - INFO -   roc_auc: 0.2210
+2025-08-12 14:10:46,563 - __main__ - INFO -   precision: 17.8%
+2025-08-12 14:10:46,563 - __main__ - INFO -   recall: 100.0%
+2025-08-12 14:10:46,563 - __main__ - INFO -   f1: 0.3020
+2025-08-12 14:10:46,563 - __main__ - INFO -   accuracy: 17.8%
+2025-08-12 14:10:46,563 - __main__ - INFO -   threshold: 0.5000
+2025-08-12 14:10:46,563 - __main__ - INFO -   expected_profit: -1.9330
+2025-08-12 14:10:46,563 - __main__ - INFO -   win_rate: 17.8%
+2025-08-12 14:10:46,563 - __main__ - INFO -   trades_taken: 100.0%
+2025-08-12 14:10:46,563 - __main__ - INFO - 
+============================================================
+2025-08-12 14:10:46,563 - __main__ - INFO - RECOMMENDATIONS
+2025-08-12 14:10:46,563 - __main__ - INFO - ============================================================
+2025-08-12 14:10:46,563 - __main__ - INFO - ⚠️ BUY model needs further tuning or more conservative thresholds
+2025-08-12 14:10:46,563 - __main__ - INFO - ⚠️ SELL model needs further tuning or more conservative thresholds
+2025-08-12 14:10:46,563 - __main__ - INFO - 
+💡 Remember: The goal is to FILTER signals, not predict all of them!
+2025-08-12 14:10:46,563 - __main__ - INFO -    Target: 60-70% win rate on 20-30% of signals
+2025-08-13 01:29:53,765 - __main__ - INFO - ============================================================
+2025-08-13 01:29:53,765 - __main__ - INFO - STARTING ML MODEL TRAINING WITH DATA LEAKAGE PREVENTION
+2025-08-13 01:29:53,765 - __main__ - INFO - ============================================================
+2025-08-13 01:29:53,766 - __main__ - INFO - Running in QUICK TEST mode with reduced trials
+2025-08-13 01:29:53,766 - __main__ - INFO - 
+========================================
+2025-08-13 01:29:53,766 - __main__ - INFO - TRAINING BUY MODEL
+2025-08-13 01:29:53,766 - __main__ - INFO - ========================================
+2025-08-13 01:29:53,766 - __main__ - INFO - 
+==================================================
+2025-08-13 01:29:53,766 - __main__ - INFO - Training BUY Models
+2025-08-13 01:29:53,766 - __main__ - INFO - ==================================================
+
+2025-08-13 01:29:53,766 - __main__ - INFO - Loading BUY data from ml_training_data_v2...
+2025-08-13 01:30:01,295 - __main__ - INFO - Loaded 86440 records for BUY
+2025-08-13 01:30:01,296 - __main__ - INFO - Base win rate: 42.8%
+2025-08-13 01:30:01,296 - __main__ - INFO - ✅ Win rate 42.8% looks realistic
+2025-08-13 01:30:01,296 - __main__ - INFO - Market regime distribution:
+2025-08-13 01:30:01,300 - __main__ - INFO - market_regime
+BULL       40897
+NEUTRAL    32861
+BEAR       12682
+Name: count, dtype: int64
+2025-08-13 01:36:45,461 - __main__ - INFO - ============================================================
+2025-08-13 01:36:45,461 - __main__ - INFO - STARTING ML MODEL TRAINING WITH DATA LEAKAGE PREVENTION
+2025-08-13 01:36:45,461 - __main__ - INFO - ============================================================
+2025-08-13 01:36:45,461 - __main__ - INFO - Running in QUICK TEST mode with reduced trials
+2025-08-13 01:36:45,461 - __main__ - INFO - 
+========================================
+2025-08-13 01:36:45,461 - __main__ - INFO - TRAINING BUY MODEL
+2025-08-13 01:36:45,461 - __main__ - INFO - ========================================
+2025-08-13 01:36:45,462 - __main__ - INFO - 
+==================================================
+2025-08-13 01:36:45,462 - __main__ - INFO - Training BUY Models
+2025-08-13 01:36:45,462 - __main__ - INFO - ==================================================
+
+2025-08-13 01:36:45,462 - __main__ - INFO - Loading BUY data from ml_training_data_v2...
+2025-08-13 01:36:53,950 - __main__ - INFO - Loaded 86440 records for BUY
+2025-08-13 01:36:53,951 - __main__ - INFO - Base win rate: 42.8%
+2025-08-13 01:36:53,951 - __main__ - INFO - ✅ Win rate 42.8% looks realistic
+2025-08-13 01:36:53,951 - __main__ - INFO - Market regime distribution:
+2025-08-13 01:36:53,955 - __main__ - INFO - market_regime
+BULL       40897
+NEUTRAL    32861
+BEAR       12682
+Name: count, dtype: int64
+2025-08-13 01:36:54,056 - __main__ - INFO - Engineered 0 new features
+2025-08-13 01:36:54,056 - __main__ - INFO - Total features: 121
+2025-08-13 01:36:54,108 - __main__ - INFO - Selected 107 features for training
+2025-08-13 01:36:54,108 - __main__ - INFO - ✅ Excluded 7 meta columns: ['_meta_outcome_time', '_meta_outcome_type', '_meta_outcome_price', '_meta_max_favorable_move', '_meta_max_adverse_move', '_meta_time_to_outcome_hours', '_meta_created_at']
+2025-08-13 01:36:54,272 - __main__ - INFO - Sample weights distribution:
+2025-08-13 01:36:54,272 - __main__ - INFO -   Weight 2.0 (best): 19856 samples
+2025-08-13 01:36:54,272 - __main__ - INFO -   Weight 1.5 (good): 21041 samples
+2025-08-13 01:36:54,272 - __main__ - INFO -   Weight 1.0 (neutral): 32861 samples
+2025-08-13 01:36:54,272 - __main__ - INFO -   Weight 0.5 (bad): 12682 samples
+2025-08-13 01:36:54,273 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-13 01:36:54,273 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-13 01:36:54,273 - __main__ - INFO -   Train: 60507 samples (first 70%)
+2025-08-13 01:36:54,273 - __main__ - INFO -   Val: 12966 samples (next 15%)
+2025-08-13 01:36:54,273 - __main__ - INFO -   Test: 12967 samples (last 15%)
+2025-08-13 01:36:54,273 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-07 01:15:00+00:00
+2025-08-13 01:36:54,273 - __main__ - INFO -   Val period: 2025-08-07 01:15:00+00:00 to 2025-08-08 21:00:00+00:00
+2025-08-13 01:36:54,275 - __main__ - INFO -   Test period: 2025-08-08 21:00:00+00:00 to 2025-08-10 22:15:00+00:00
+2025-08-13 01:36:54,275 - __main__ - INFO - 
+Target distribution:
+2025-08-13 01:36:54,275 - __main__ - INFO -   Train: 37.69% win rate
+2025-08-13 01:36:54,275 - __main__ - INFO -   Val: 82.23% win rate
+2025-08-13 01:36:54,275 - __main__ - INFO -   Test: 27.37% win rate
+2025-08-13 01:36:54,275 - __main__ - WARNING - ⚠️ Large distribution shift between train and test!
+2025-08-13 01:36:54,275 - __main__ - WARNING -   This is expected in financial data but may affect performance
+2025-08-13 01:36:54,275 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-13 01:36:56,844 - __main__ - INFO - XGBoost best AUC: 0.6970
+2025-08-13 01:36:56,844 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-13 01:36:59,677 - __main__ - INFO - LightGBM best AUC: 0.6817
+2025-08-13 01:36:59,677 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-13 01:37:02,347 - __main__ - INFO - CatBoost best AUC: 0.6495
+2025-08-13 01:37:02,347 - __main__ - INFO - 
+Training final models...
+2025-08-13 01:37:02,964 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-13 01:37:02,974 - __main__ - INFO - 
+XGBoost Performance (threshold=0.30):
+2025-08-13 01:37:02,974 - __main__ - INFO -   roc_auc: 0.6500
+2025-08-13 01:37:02,974 - __main__ - INFO -   precision: 28.1%
+2025-08-13 01:37:02,974 - __main__ - INFO -   recall: 97.5%
+2025-08-13 01:37:02,974 - __main__ - INFO -   f1: 0.4363
+2025-08-13 01:37:02,974 - __main__ - INFO -   accuracy: 31.0%
+2025-08-13 01:37:02,974 - __main__ - INFO -   threshold: 0.3000
+2025-08-13 01:37:02,974 - __main__ - INFO -   expected_profit: -1.3142
+2025-08-13 01:37:02,974 - __main__ - INFO -   win_rate: 28.1%
+2025-08-13 01:37:02,974 - __main__ - INFO -   trades_taken: 95.0% of signals
+2025-08-13 01:37:03,460 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-13 01:37:03,469 - __main__ - INFO - 
+LightGBM Performance (threshold=0.30):
+2025-08-13 01:37:03,469 - __main__ - INFO -   roc_auc: 0.6316
+2025-08-13 01:37:03,469 - __main__ - INFO -   precision: 28.0%
+2025-08-13 01:37:03,469 - __main__ - INFO -   recall: 98.7%
+2025-08-13 01:37:03,469 - __main__ - INFO -   f1: 0.4361
+2025-08-13 01:37:03,469 - __main__ - INFO -   accuracy: 30.1%
+2025-08-13 01:37:03,469 - __main__ - INFO -   threshold: 0.3000
+2025-08-13 01:37:03,469 - __main__ - INFO -   expected_profit: -1.3208
+2025-08-13 01:37:03,469 - __main__ - INFO -   win_rate: 28.0%
+2025-08-13 01:37:03,469 - __main__ - INFO -   trades_taken: 96.5% of signals
+2025-08-13 01:37:03,914 - __main__ - INFO - Optimal threshold found: 0.30
+2025-08-13 01:37:03,920 - __main__ - INFO - 
+CatBoost Performance (threshold=0.30):
+2025-08-13 01:37:03,920 - __main__ - INFO -   roc_auc: 0.6480
+2025-08-13 01:37:03,920 - __main__ - INFO -   precision: 27.9%
+2025-08-13 01:37:03,920 - __main__ - INFO -   recall: 98.4%
+2025-08-13 01:37:03,920 - __main__ - INFO -   f1: 0.4351
+2025-08-13 01:37:03,920 - __main__ - INFO -   accuracy: 30.1%
+2025-08-13 01:37:03,920 - __main__ - INFO -   threshold: 0.3000
+2025-08-13 01:37:03,920 - __main__ - INFO -   expected_profit: -1.3244
+2025-08-13 01:37:03,920 - __main__ - INFO -   win_rate: 27.9%
+2025-08-13 01:37:03,920 - __main__ - INFO -   trades_taken: 96.4% of signals
+2025-08-13 01:37:04,260 - __main__ - INFO - Comparison plot saved to buy_models_comparison.png
+2025-08-13 01:37:07,469 - __main__ - WARNING - No model meets minimum criteria
+2025-08-13 01:37:07,489 - __main__ - INFO - 
+==================================================
+2025-08-13 01:37:07,489 - __main__ - INFO - Performance by Market Regime - BUY
+2025-08-13 01:37:07,489 - __main__ - INFO - Using threshold: 0.30
+2025-08-13 01:37:07,489 - __main__ - INFO - ==================================================
+2025-08-13 01:37:07,490 - __main__ - INFO - 
+BULL Market:
+2025-08-13 01:37:07,491 - __main__ - INFO -   Total samples: 12967
+2025-08-13 01:37:07,491 - __main__ - INFO -   Trades taken: 12322 (95.0%)
+2025-08-13 01:37:07,491 - __main__ - INFO -   Win rate on taken trades: 28.1%
+2025-08-13 01:37:07,491 - __main__ - INFO -   Expected profit per trade: -131.42%
+2025-08-13 01:37:07,491 - __main__ - INFO -   ❌ AVOID - Don't trade BUY in BULL
+2025-08-13 01:37:07,495 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-13 01:37:07,495 - __main__ - INFO -   regime_signal_match: 0.0802
+2025-08-13 01:37:07,495 - __main__ - INFO -   regime_numeric: 0.0697
+2025-08-13 01:37:07,496 - __main__ - INFO -   regime_conflict: 0.0449
+2025-08-13 01:37:07,496 - __main__ - INFO -   regime_x_rsi: 0.0234
+2025-08-13 01:37:07,496 - __main__ - INFO -   weak_signal_wrong_regime: 0.0202
+2025-08-13 01:37:07,496 - __main__ - INFO -   market_regime_encoded: 0.0187
+2025-08-13 01:37:07,556 - __main__ - INFO - Feature importance plot saved to buy_xgboost_importance.png
+2025-08-13 01:37:12,831 - __main__ - INFO - Preprocessor saved to models/buy_preprocessor.pkl
+2025-08-13 01:37:12,833 - __main__ - INFO - XGBoost model saved to models/buy_xgboost_model.pkl
+2025-08-13 01:37:12,835 - __main__ - INFO - LightGBM model saved to models/buy_lightgbm_model.pkl
+2025-08-13 01:37:12,842 - __main__ - INFO - CatBoost model saved to models/buy_catboost_model.pkl
+2025-08-13 01:37:12,843 - __main__ - INFO - Best model saved to models/buy_best_model.pkl with threshold 0.30
+2025-08-13 01:37:12,843 - __main__ - INFO - 
+========================================
+2025-08-13 01:37:12,843 - __main__ - INFO - TRAINING SELL MODEL
+2025-08-13 01:37:12,843 - __main__ - INFO - ========================================
+2025-08-13 01:37:12,844 - __main__ - INFO - 
+==================================================
+2025-08-13 01:37:12,844 - __main__ - INFO - Training SELL Models
+2025-08-13 01:37:12,844 - __main__ - INFO - ==================================================
+
+2025-08-13 01:37:12,844 - __main__ - INFO - Loading SELL data from ml_training_data_v2...
+2025-08-13 01:37:22,331 - __main__ - INFO - Loaded 105992 records for SELL
+2025-08-13 01:37:22,331 - __main__ - INFO - Base win rate: 59.5%
+2025-08-13 01:37:22,331 - __main__ - INFO - ✅ Win rate 59.5% looks realistic
+2025-08-13 01:37:22,331 - __main__ - INFO - Market regime distribution:
+2025-08-13 01:37:22,336 - __main__ - INFO - market_regime
+NEUTRAL    44391
+BULL       37720
+BEAR       23881
+Name: count, dtype: int64
+2025-08-13 01:37:22,486 - __main__ - INFO - Engineered 0 new features
+2025-08-13 01:37:22,486 - __main__ - INFO - Total features: 121
+2025-08-13 01:37:22,558 - __main__ - INFO - Selected 107 features for training
+2025-08-13 01:37:22,558 - __main__ - INFO - ✅ Excluded 7 meta columns: ['_meta_outcome_time', '_meta_outcome_type', '_meta_outcome_price', '_meta_max_favorable_move', '_meta_max_adverse_move', '_meta_time_to_outcome_hours', '_meta_created_at']
+2025-08-13 01:37:22,790 - __main__ - INFO - Sample weights distribution:
+2025-08-13 01:37:22,790 - __main__ - INFO -   Weight 2.0 (best): 16803 samples
+2025-08-13 01:37:22,790 - __main__ - INFO -   Weight 1.5 (good): 7078 samples
+2025-08-13 01:37:22,790 - __main__ - INFO -   Weight 1.0 (neutral): 44391 samples
+2025-08-13 01:37:22,790 - __main__ - INFO -   Weight 0.5 (bad): 37720 samples
+2025-08-13 01:37:22,791 - __main__ - INFO - ✅ Temporal split is valid - no overlap between sets
+2025-08-13 01:37:22,792 - __main__ - INFO - Data split (STRICT TEMPORAL):
+2025-08-13 01:37:22,792 - __main__ - INFO -   Train: 74194 samples (first 70%)
+2025-08-13 01:37:22,792 - __main__ - INFO -   Val: 15898 samples (next 15%)
+2025-08-13 01:37:22,792 - __main__ - INFO -   Test: 15900 samples (last 15%)
+2025-08-13 01:37:22,793 - __main__ - INFO -   Train period: 2025-07-25 16:00:00+00:00 to 2025-08-05 18:15:00+00:00
+2025-08-13 01:37:22,793 - __main__ - INFO -   Val period: 2025-08-05 18:15:00+00:00 to 2025-08-08 12:00:00+00:00
+2025-08-13 01:37:22,793 - __main__ - INFO -   Test period: 2025-08-08 12:00:00+00:00 to 2025-08-10 22:15:00+00:00
+2025-08-13 01:37:22,793 - __main__ - INFO - 
+Target distribution:
+2025-08-13 01:37:22,793 - __main__ - INFO -   Train: 69.28% win rate
+2025-08-13 01:37:22,793 - __main__ - INFO -   Val: 13.35% win rate
+2025-08-13 01:37:22,793 - __main__ - INFO -   Test: 60.05% win rate
+2025-08-13 01:37:22,793 - __main__ - INFO - 
+Optimizing XGBoost...
+2025-08-13 01:37:24,765 - __main__ - INFO - XGBoost best AUC: 0.5001
+2025-08-13 01:37:24,765 - __main__ - INFO - 
+Optimizing LightGBM...
+2025-08-13 01:37:26,623 - __main__ - INFO - LightGBM best AUC: 0.5337
+2025-08-13 01:37:26,623 - __main__ - INFO - 
+Optimizing CatBoost...
+2025-08-13 01:37:27,876 - __main__ - INFO - CatBoost best AUC: 0.5803
+2025-08-13 01:37:27,876 - __main__ - INFO - 
+Training final models...
+2025-08-13 01:37:28,152 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-13 01:37:28,161 - __main__ - INFO - 
+XGBoost Performance (threshold=0.50):
+2025-08-13 01:37:28,161 - __main__ - INFO -   roc_auc: 0.3761
+2025-08-13 01:37:28,161 - __main__ - INFO -   precision: 60.1%
+2025-08-13 01:37:28,162 - __main__ - INFO -   recall: 100.0%
+2025-08-13 01:37:28,162 - __main__ - INFO -   f1: 0.7504
+2025-08-13 01:37:28,162 - __main__ - INFO -   accuracy: 60.1%
+2025-08-13 01:37:28,162 - __main__ - INFO -   threshold: 0.5000
+2025-08-13 01:37:28,162 - __main__ - INFO -   expected_profit: 0.6030
+2025-08-13 01:37:28,162 - __main__ - INFO -   win_rate: 60.1%
+2025-08-13 01:37:28,162 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-13 01:37:28,567 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-13 01:37:28,575 - __main__ - INFO - 
+LightGBM Performance (threshold=0.50):
+2025-08-13 01:37:28,575 - __main__ - INFO -   roc_auc: 0.4829
+2025-08-13 01:37:28,575 - __main__ - INFO -   precision: 60.1%
+2025-08-13 01:37:28,575 - __main__ - INFO -   recall: 100.0%
+2025-08-13 01:37:28,575 - __main__ - INFO -   f1: 0.7504
+2025-08-13 01:37:28,575 - __main__ - INFO -   accuracy: 60.1%
+2025-08-13 01:37:28,575 - __main__ - INFO -   threshold: 0.5000
+2025-08-13 01:37:28,576 - __main__ - INFO -   expected_profit: 0.6030
+2025-08-13 01:37:28,576 - __main__ - INFO -   win_rate: 60.1%
+2025-08-13 01:37:28,576 - __main__ - INFO -   trades_taken: 100.0% of signals
+2025-08-13 01:37:28,850 - __main__ - INFO - Optimal threshold found: 0.50
+2025-08-13 01:37:28,856 - __main__ - INFO - 
+CatBoost Performance (threshold=0.50):
+2025-08-13 01:37:28,856 - __main__ - INFO -   roc_auc: 0.4724
+2025-08-13 01:37:28,856 - __main__ - INFO -   precision: 59.4%
+2025-08-13 01:37:28,856 - __main__ - INFO -   recall: 48.4%
+2025-08-13 01:37:28,856 - __main__ - INFO -   f1: 0.5333
+2025-08-13 01:37:28,856 - __main__ - INFO -   accuracy: 49.1%
+2025-08-13 01:37:28,856 - __main__ - INFO -   threshold: 0.5000
+2025-08-13 01:37:28,856 - __main__ - INFO -   expected_profit: 0.5612
+2025-08-13 01:37:28,856 - __main__ - INFO -   win_rate: 59.4%
+2025-08-13 01:37:28,856 - __main__ - INFO -   trades_taken: 49.0% of signals
+2025-08-13 01:37:29,021 - __main__ - INFO - Comparison plot saved to sell_models_comparison.png
+2025-08-13 01:37:36,307 - __main__ - INFO - 
+Best model for SELL: XGBoost
+2025-08-13 01:37:36,308 - __main__ - INFO - Win rate: 60.1%
+2025-08-13 01:37:36,308 - __main__ - INFO - Trades taken: 100.0%
+2025-08-13 01:37:36,308 - __main__ - INFO - Expected profit: 60.30%
+2025-08-13 01:37:36,329 - __main__ - INFO - 
+==================================================
+2025-08-13 01:37:36,329 - __main__ - INFO - Performance by Market Regime - SELL
+2025-08-13 01:37:36,329 - __main__ - INFO - Using threshold: 0.50
+2025-08-13 01:37:36,329 - __main__ - INFO - ==================================================
+2025-08-13 01:37:36,330 - __main__ - INFO - 
+BULL Market:
+2025-08-13 01:37:36,331 - __main__ - INFO -   Total samples: 15900
+2025-08-13 01:37:36,331 - __main__ - INFO -   Trades taken: 15900 (100.0%)
+2025-08-13 01:37:36,331 - __main__ - INFO -   Win rate on taken trades: 60.1%
+2025-08-13 01:37:36,331 - __main__ - INFO -   Expected profit per trade: 60.30%
+2025-08-13 01:37:36,331 - __main__ - INFO -   ⚠️ ACCEPTABLE - Be selective with SELL in BULL
+2025-08-13 01:37:36,333 - __main__ - INFO - 
+Market Regime Feature Importance:
+2025-08-13 01:37:36,333 - __main__ - INFO -   regime_signal_match: 0.0401
+2025-08-13 01:37:36,333 - __main__ - INFO -   regime_numeric: 0.0206
+2025-08-13 01:37:36,333 - __main__ - INFO -   regime_x_rsi: 0.0192
+2025-08-13 01:37:36,333 - __main__ - INFO -   market_regime_encoded: 0.0132
+2025-08-13 01:37:36,391 - __main__ - INFO - Feature importance plot saved to sell_xgboost_importance.png
+2025-08-13 01:37:38,060 - __main__ - INFO - Preprocessor saved to models/sell_preprocessor.pkl
+2025-08-13 01:37:38,069 - __main__ - INFO - XGBoost model saved to models/sell_xgboost_model.pkl
+2025-08-13 01:37:38,082 - __main__ - INFO - LightGBM model saved to models/sell_lightgbm_model.pkl
+2025-08-13 01:37:38,091 - __main__ - INFO - CatBoost model saved to models/sell_catboost_model.pkl
+2025-08-13 01:37:38,092 - __main__ - INFO - Best model saved to models/sell_best_model.pkl with threshold 0.50
+2025-08-13 01:37:38,092 - __main__ - INFO - 
+============================================================
+2025-08-13 01:37:38,092 - __main__ - INFO - TRAINING COMPLETE - SUMMARY
+2025-08-13 01:37:38,092 - __main__ - INFO - ============================================================
+2025-08-13 01:37:38,092 - __main__ - INFO - 
+📊 BUY Model Performance:
+2025-08-13 01:37:38,092 - __main__ - INFO - Best Model: XGBoost
+2025-08-13 01:37:38,092 - __main__ - INFO - Optimal Threshold: 0.30
+2025-08-13 01:37:38,092 - __main__ - INFO -   roc_auc: 0.6500
+2025-08-13 01:37:38,092 - __main__ - INFO -   precision: 28.1%
+2025-08-13 01:37:38,092 - __main__ - INFO -   recall: 97.5%
+2025-08-13 01:37:38,092 - __main__ - INFO -   f1: 0.4363
+2025-08-13 01:37:38,092 - __main__ - INFO -   accuracy: 31.0%
+2025-08-13 01:37:38,092 - __main__ - INFO -   threshold: 0.3000
+2025-08-13 01:37:38,092 - __main__ - INFO -   expected_profit: -1.3142
+2025-08-13 01:37:38,092 - __main__ - INFO -   win_rate: 28.1%
+2025-08-13 01:37:38,092 - __main__ - INFO -   trades_taken: 95.0%
+2025-08-13 01:37:38,092 - __main__ - INFO - 
+📊 SELL Model Performance:
+2025-08-13 01:37:38,092 - __main__ - INFO - Best Model: XGBoost
+2025-08-13 01:37:38,092 - __main__ - INFO - Optimal Threshold: 0.50
+2025-08-13 01:37:38,092 - __main__ - INFO -   roc_auc: 0.3761
+2025-08-13 01:37:38,092 - __main__ - INFO -   precision: 60.1%
+2025-08-13 01:37:38,092 - __main__ - INFO -   recall: 100.0%
+2025-08-13 01:37:38,092 - __main__ - INFO -   f1: 0.7504
+2025-08-13 01:37:38,092 - __main__ - INFO -   accuracy: 60.1%
+2025-08-13 01:37:38,092 - __main__ - INFO -   threshold: 0.5000
+2025-08-13 01:37:38,092 - __main__ - INFO -   expected_profit: 0.6030
+2025-08-13 01:37:38,092 - __main__ - INFO -   win_rate: 60.1%
+2025-08-13 01:37:38,092 - __main__ - INFO -   trades_taken: 100.0%
+2025-08-13 01:37:38,092 - __main__ - INFO - 
+============================================================
+2025-08-13 01:37:38,092 - __main__ - INFO - RECOMMENDATIONS
+2025-08-13 01:37:38,092 - __main__ - INFO - ============================================================
+2025-08-13 01:37:38,092 - __main__ - INFO - ⚠️ BUY model needs further tuning or more conservative thresholds
+2025-08-13 01:37:38,092 - __main__ - INFO - ⚠️ SELL model needs further tuning or more conservative thresholds
+2025-08-13 01:37:38,092 - __main__ - INFO - 
+💡 Remember: The goal is to FILTER signals, not predict all of them!
+2025-08-13 01:37:38,092 - __main__ - INFO -    Target: 60-70% win rate on 20-30% of signals
