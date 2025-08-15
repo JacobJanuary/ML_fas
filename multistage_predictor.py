@@ -20,6 +20,7 @@ from dotenv import load_dotenv
 import time
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from feature_preprocessor import FeaturePreprocessor  # Import the preprocessor
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -64,12 +65,16 @@ class MultiStagePredictor:
         self.models = {}
         self.scalers = {}
         self.thresholds = {}
+        self.model_features = {}  # Store feature columns for each model
 
         # Performance targets
         self.target_win_rates = {
             'BUY': 0.85,  # 85% win rate for BUY
             'SELL': 0.70  # 70% win rate for SELL
         }
+
+        # Initialize preprocessor
+        self.preprocessor = FeaturePreprocessor()
 
         # Load all models
         self._load_models()
@@ -96,9 +101,11 @@ class MultiStagePredictor:
                             model_data = joblib.load(model_path)
                             self.models[model_id] = model_data.get('model')
                             self.scalers[model_id] = model_data.get('scaler')
-                            self.thresholds[model_id] = row['threshold'] or model_data.get('threshold', 0.5)
+                            # Use threshold from DB first, then from model file
+                            self.thresholds[model_id] = float(row['threshold']) if row['threshold'] else model_data.get('threshold', 0.5)
+                            self.model_features[model_id] = model_data.get('features', [])
 
-                            logger.info(f"Loaded model {row['model_name']} (ID: {model_id})")
+                            logger.info(f"Loaded model {row['model_name']} (ID: {model_id}, threshold: {self.thresholds[model_id]:.3f})")
                         except Exception as e:
                             logger.error(f"Failed to load model {model_id}: {e}")
 
@@ -113,9 +120,55 @@ class MultiStagePredictor:
                     "SELECT ml.select_best_model(%s, %s, %s)",
                     (signal_type, regime, stage)
                 )
-                model_id = cur.fetchone()[0]
+                result = cur.fetchone()
+                if result:
+                    model_id = result[0]
+                    return model_id
+                return None
 
-                return model_id
+    def _prepare_features_for_model(self, df: pd.DataFrame, model_id: int, model_type: str = 'full') -> pd.DataFrame:
+        """Prepare features using the preprocessor and model-specific requirements."""
+        # Use the preprocessor to handle type conversions and feature engineering
+        # Don't filter by model_type during prediction - use all available features
+        df_processed = self.preprocessor.prepare_features(df.copy(), is_training=False, model_type='precision')
+
+        # If we have specific features for this model, use only those
+        if model_id in self.model_features and self.model_features[model_id]:
+            model_features = self.model_features[model_id]
+            # Keep only features that exist in both processed df and model features
+            available_features = []
+            missing_features = []
+
+            for feature in model_features:
+                if feature in df_processed.columns:
+                    available_features.append(feature)
+                else:
+                    missing_features.append(feature)
+
+            # If features are missing, add them with default values
+            for feature in missing_features:
+                # Add missing features with reasonable defaults
+                if 'encoded' in feature or 'count' in feature:
+                    df_processed[feature] = 0
+                else:
+                    df_processed[feature] = 0.0
+
+            # Now select the exact features the model expects
+            df_processed = df_processed[model_features]
+
+        # Ensure all columns are numeric
+        for col in df_processed.columns:
+            if df_processed[col].dtype == 'object':
+                # Try to convert to numeric
+                df_processed[col] = pd.to_numeric(df_processed[col], errors='coerce')
+
+        # Fill any NaN values
+        df_processed = df_processed.fillna(0)
+
+        # Replace infinity values
+        df_processed = df_processed.replace([np.inf, -np.inf], 0)
+
+        return df_processed
 
     def stage1_quick_filter(self, features: pd.DataFrame, signal_type: str) -> StageResult:
         """
@@ -130,9 +183,13 @@ class MultiStagePredictor:
 
         if not model_id or model_id not in self.models:
             # Fallback to simple rules if no model
+            # First, ensure we can access the columns by converting to numeric
+            total_score = pd.to_numeric(features.get('total_score', [0]).iloc[0] if 'total_score' in features.columns else 0, errors='coerce')
+            if pd.isna(total_score):
+                total_score = 0
+
             score_threshold = 10 if signal_type == 'BUY' else -10
-            passed = features['total_score'].iloc[0] > score_threshold if signal_type == 'BUY' else \
-            features['total_score'].iloc[0] < score_threshold
+            passed = total_score > score_threshold if signal_type == 'BUY' else total_score < score_threshold
 
             return StageResult(
                 passed=passed,
@@ -142,24 +199,38 @@ class MultiStagePredictor:
                 processing_time_ms=int((time.time() - start_time) * 1000)
             )
 
+        # Prepare features using preprocessor - let it handle feature selection
+        X = self._prepare_features_for_model(features, model_id, model_type='quick_filter')
+
         # Make prediction
         model = self.models[model_id]
         scaler = self.scalers.get(model_id)
 
-        # Prepare features (subset for speed)
-        quick_features = ['total_score', 'rsi', 'volume_zscore', 'price_change_pct']
-        X = features[quick_features].fillna(0)
-
         if scaler:
             X = scaler.transform(X)
 
-        probability = model.predict_proba(X)[0, 1]
-        threshold = 0.3  # Low threshold for quick filter
+        try:
+            probability = model.predict_proba(X)[0, 1]
+        except Exception as e:
+            logger.error(f"Prediction failed in stage1: {e}")
+            logger.error(f"Features shape: {X.shape}, columns: {list(X.columns) if hasattr(X, 'columns') else 'N/A'}")
+            logger.error(f"Expected features: {self.model_features.get(model_id, 'Unknown')}")
+            # Fallback
+            return StageResult(
+                passed=False,
+                probability=0.0,
+                threshold=0.3,
+                model_id=model_id,
+                processing_time_ms=int((time.time() - start_time) * 1000)
+            )
+
+        # Use threshold from database/model
+        threshold = self.thresholds.get(model_id, 0.4)  # Default 0.4 for quick filter
 
         return StageResult(
             passed=probability >= threshold,
             probability=float(probability),
-            threshold=threshold,
+            threshold=float(threshold),
             model_id=model_id,
             processing_time_ms=int((time.time() - start_time) * 1000)
         )
@@ -190,7 +261,9 @@ class MultiStagePredictor:
                     return result[0], result[1]
 
         # Fallback: Simple regime detection based on indicators
-        rsi = features['rsi'].iloc[0] if 'rsi' in features else 50
+        rsi = pd.to_numeric(features.get('rsi', [50]).iloc[0] if 'rsi' in features.columns else 50, errors='coerce')
+        if pd.isna(rsi):
+            rsi = 50
 
         if rsi > 65:
             return 'BULL', 0.7
@@ -222,15 +295,29 @@ class MultiStagePredictor:
                 processing_time_ms=int((time.time() - start_time) * 1000)
             )
 
+        # Prepare features using preprocessor
+        X = self._prepare_features_for_model(features, model_id, model_type='regime_specific')
+
         # Make prediction with full features
         model = self.models[model_id]
         scaler = self.scalers.get(model_id)
 
-        X = features.fillna(0)
         if scaler:
             X = scaler.transform(X)
 
-        probability = model.predict_proba(X)[0, 1]
+        try:
+            probability = model.predict_proba(X)[0, 1]
+        except Exception as e:
+            logger.error(f"Prediction failed in stage3: {e}")
+            logger.error(f"Features shape: {X.shape}, dtypes: {X.dtypes.to_dict()}")
+            return StageResult(
+                passed=False,
+                probability=0.0,
+                threshold=0.5,
+                model_id=model_id,
+                processing_time_ms=int((time.time() - start_time) * 1000)
+            )
+
         threshold = self.thresholds.get(model_id, 0.6)
 
         return StageResult(
@@ -265,22 +352,37 @@ class MultiStagePredictor:
                 processing_time_ms=int((time.time() - start_time) * 1000)
             )
 
-        # Make prediction
-        model = self.models[model_id]
-        scaler = self.scalers.get(model_id)
-
-        # Add ensemble features (probabilities from previous stages)
+        # Prepare features with ensemble additions
         ensemble_features = features.copy()
         ensemble_features['stage1_prob'] = previous_probabilities[0]
         ensemble_features['stage3_prob'] = previous_probabilities[1]
         ensemble_features['prob_std'] = np.std(previous_probabilities)
         ensemble_features['prob_mean'] = np.mean(previous_probabilities)
 
-        X = ensemble_features.fillna(0)
+        # Use preprocessor
+        X = self._prepare_features_for_model(ensemble_features, model_id, model_type='precision')
+
+        # Make prediction
+        model = self.models[model_id]
+        scaler = self.scalers.get(model_id)
+
         if scaler:
             X = scaler.transform(X)
 
-        probability = model.predict_proba(X)[0, 1]
+        try:
+            probability = model.predict_proba(X)[0, 1]
+        except Exception as e:
+            logger.error(f"Prediction failed in stage4: {e}")
+            logger.error(f"Features shape: {X.shape}, dtypes: {X.dtypes.to_dict()}")
+            # Fallback to average of previous probabilities
+            avg_prob = np.mean(previous_probabilities)
+            return StageResult(
+                passed=avg_prob >= 0.7,
+                probability=avg_prob,
+                threshold=0.7,
+                model_id=model_id,
+                processing_time_ms=int((time.time() - start_time) * 1000)
+            )
 
         # Get dynamically calibrated threshold
         dynamic_threshold = self._get_dynamic_threshold(model_id, signal_type)
@@ -321,9 +423,9 @@ class MultiStagePredictor:
                     (model_id, target_wr)
                 )
 
-                calibrated = cur.fetchone()[0]
-                if calibrated:
-                    return float(calibrated)
+                result = cur.fetchone()
+                if result and result[0] is not None:
+                    return float(result[0])
 
         # Ultimate fallback
         return 0.7 if signal_type == 'BUY' else 0.6
@@ -340,8 +442,33 @@ class MultiStagePredictor:
         signal_id = signal_data['id']
         signal_type = signal_data['signal_type']
 
-        # Prepare features
+        # Prepare features - ensure all values are properly typed
         features = pd.DataFrame([signal_data])
+
+        # Add signal_strength based on total_score if not present
+        if 'signal_strength' not in features.columns:
+            total_score = pd.to_numeric(signal_data.get('total_score', 0), errors='coerce')
+            abs_score = abs(total_score)
+            if abs_score < 10:
+                features['signal_strength'] = 'WEAK'
+            elif abs_score < 25:
+                features['signal_strength'] = 'MODERATE'
+            elif abs_score < 50:
+                features['signal_strength'] = 'STRONG'
+            else:
+                features['signal_strength'] = 'VERY_STRONG'
+
+        # Convert any numeric columns that came as strings
+        numeric_columns = ['total_score', 'rsi', 'volume_zscore', 'price_change_pct',
+                          'buy_ratio', 'buy_ratio_weighted', 'cvd_delta', 'cvd_cumulative',
+                          'trading_pair_id', 'pattern_count', 'combo_count',
+                          'pattern_score', 'combination_score', 'indicator_score',
+                          'oi_change_pct', 'funding_rate', 'normalized_imbalance',
+                          'smoothed_imbalance', 'rs_momentum', 'atr', 'macd_histogram',
+                          'regime_strength']
+        for col in numeric_columns:
+            if col in features.columns:
+                features[col] = pd.to_numeric(features[col], errors='coerce')
 
         # Stage 1: Quick Filter
         stage1_result = self.stage1_quick_filter(features, signal_type)
@@ -393,37 +520,60 @@ class MultiStagePredictor:
 
     def _create_result(self, signal_data: Dict, **kwargs) -> Dict:
         """Create result dictionary for database storage."""
-        return {
+        # Helper function to convert numpy types to Python types
+        # Compatible with NumPy 2.x
+        def convert_numpy_type(value):
+            if isinstance(value, np.generic):
+                # This covers ALL numpy scalar types in NumPy 2.x
+                return value.item()
+            elif isinstance(value, np.ndarray):
+                return value.tolist()
+            else:
+                return value
+
+        # Get stage results with proper NULL handling for model_ids
+        stage1_result = kwargs.get('stage1_result', StageResult(False, 0, 0, 0, 0))
+        stage3_result = kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0))
+        stage4_result = kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0))
+
+        result = {
             'signal_id': signal_data['id'],
             'signal_timestamp': signal_data['timestamp'],
             'trading_pair_id': signal_data['trading_pair_id'],
             'pair_symbol': signal_data['pair_symbol'],
             'signal_type': signal_data['signal_type'],
 
-            'stage1_model_id': kwargs.get('stage1_result', StageResult(False, 0, 0, 0, 0)).model_id,
-            'stage1_probability': kwargs.get('stage1_result', StageResult(False, 0, 0, 0, 0)).probability,
-            'stage1_passed': kwargs.get('stage1_result', StageResult(False, 0, 0, 0, 0)).passed,
-            'stage1_time_ms': kwargs.get('stage1_result', StageResult(False, 0, 0, 0, 0)).processing_time_ms,
+            'stage1_model_id': stage1_result.model_id if stage1_result.model_id > 0 else None,
+            'stage1_probability': stage1_result.probability,
+            'stage1_threshold': stage1_result.threshold,
+            'stage1_passed': stage1_result.passed,
+            'stage1_time_ms': stage1_result.processing_time_ms,
 
             'detected_regime': kwargs.get('regime'),
             'regime_confidence': kwargs.get('regime_confidence'),
 
-            'stage3_model_id': kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0)).model_id,
-            'stage3_probability': kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0)).probability,
-            'stage3_threshold': kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0)).threshold,
-            'stage3_passed': kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0)).passed,
-            'stage3_time_ms': kwargs.get('stage3_result', StageResult(False, 0, 0, 0, 0)).processing_time_ms,
+            'stage3_model_id': stage3_result.model_id if stage3_result.model_id > 0 else None,
+            'stage3_probability': stage3_result.probability,
+            'stage3_threshold': stage3_result.threshold,
+            'stage3_passed': stage3_result.passed,
+            'stage3_time_ms': stage3_result.processing_time_ms,
 
-            'stage4_model_id': kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0)).model_id,
-            'stage4_probability': kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0)).probability,
-            'stage4_dynamic_threshold': kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0)).threshold,
-            'stage4_passed': kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0)).passed,
-            'stage4_time_ms': kwargs.get('stage4_result', StageResult(False, 0, 0, 0, 0)).processing_time_ms,
+            'stage4_model_id': stage4_result.model_id if stage4_result.model_id > 0 else None,
+            'stage4_probability': stage4_result.probability,
+            'stage4_dynamic_threshold': stage4_result.threshold,
+            'stage4_passed': stage4_result.passed,
+            'stage4_time_ms': stage4_result.processing_time_ms,
 
             'final_decision': kwargs.get('final_decision', False),
             'final_confidence': kwargs.get('final_confidence', 0.0),
             'total_processing_time_ms': kwargs.get('total_time_ms', 0)
         }
+
+        # Convert all numpy types to Python types
+        for key, value in result.items():
+            result[key] = convert_numpy_type(value)
+
+        return result
 
     def process_batch(self, limit: int = 100) -> List[Dict]:
         """Process batch of active signals."""
@@ -476,8 +626,8 @@ class MultiStagePredictor:
         return results
 
     def _get_active_signals(self, limit: int) -> List[Dict]:
-        """Get active signals from database."""
-        # Use the same query as original production_predictor
+        """Get active signals from database with all required fields."""
+        # Query using actual table structure
         query = """
         WITH active_signals AS (
             SELECT
@@ -486,16 +636,44 @@ class MultiStagePredictor:
                 sh.trading_pair_id,
                 sh.pair_symbol,
                 sh.total_score,
+                sh.pattern_score,
+                sh.combination_score,
+                sh.indicator_score,
+                sh.recommended_action,
                 CASE
                     WHEN sh.total_score > 0 THEN 'BUY'
                     ELSE 'SELL'
                 END AS signal_type,
+                -- Extract pattern/combo counts from JSONB
+                COALESCE(jsonb_array_length(sh.patterns_details), 0) as pattern_count,
+                COALESCE(jsonb_array_length(sh.combinations_details), 0) as combo_count,
+                -- Get pattern names from JSONB (first 3 patterns)
+                sh.patterns_details->0->>'name' as pattern_1_name,
+                sh.patterns_details->1->>'name' as pattern_2_name,
+                sh.patterns_details->2->>'name' as pattern_3_name,
+                -- Get combo names from JSONB (first 2 combos)
+                sh.combinations_details->0->>'name' as combo_1_name,
+                sh.combinations_details->1->>'name' as combo_2_name,
+                -- Get latest indicators
                 ind.rsi,
                 ind.volume_zscore,
                 ind.price_change_pct,
                 ind.buy_ratio,
-                ind.cvd_delta
+                ind.buy_ratio_weighted,
+                ind.cvd_delta,
+                ind.cvd_cumulative,
+                ind.oi_delta_pct as oi_change_pct,
+                ind.funding_rate_avg as funding_rate,
+                ind.normalized_imbalance,
+                ind.smoothed_imbalance,
+                ind.rs_momentum,
+                ind.atr,
+                ind.macd_histogram,
+                -- Get market regime
+                mr.regime as market_regime,
+                mr.strength as regime_strength
             FROM fas.scoring_history sh
+            -- Get latest indicators
             LEFT JOIN LATERAL (
                 SELECT *
                 FROM fas.indicators i
@@ -505,8 +683,18 @@ class MultiStagePredictor:
                 ORDER BY i.timestamp DESC
                 LIMIT 1
             ) ind ON true
+            -- Get market regime
+            LEFT JOIN LATERAL (
+                SELECT regime, strength
+                FROM fas.market_regime mr
+                WHERE mr.timeframe = '4h'::fas.timeframe_enum
+                  AND mr.timestamp <= sh.timestamp
+                ORDER BY mr.timestamp DESC
+                LIMIT 1
+            ) mr ON true
             WHERE sh.is_active = true
                 AND NOT public.is_stablecoin_pair(sh.trading_pair_id)
+            ORDER BY sh.timestamp DESC
             LIMIT %s
         )
         SELECT * FROM active_signals
@@ -529,14 +717,14 @@ class MultiStagePredictor:
                         cur.execute("""
                             INSERT INTO ml.multistage_predictions (
                                 signal_id, signal_timestamp, trading_pair_id, pair_symbol, signal_type,
-                                stage1_model_id, stage1_probability, stage1_passed, stage1_time_ms,
+                                stage1_model_id, stage1_probability, stage1_threshold, stage1_passed, stage1_time_ms,
                                 detected_regime, regime_confidence,
                                 stage3_model_id, stage3_probability, stage3_threshold, stage3_passed, stage3_time_ms,
                                 stage4_model_id, stage4_probability, stage4_dynamic_threshold, stage4_passed, stage4_time_ms,
                                 final_decision, final_confidence, total_processing_time_ms
                             ) VALUES (
                                 %(signal_id)s, %(signal_timestamp)s, %(trading_pair_id)s, %(pair_symbol)s, %(signal_type)s,
-                                %(stage1_model_id)s, %(stage1_probability)s, %(stage1_passed)s, %(stage1_time_ms)s,
+                                %(stage1_model_id)s, %(stage1_probability)s, %(stage1_threshold)s, %(stage1_passed)s, %(stage1_time_ms)s,
                                 %(detected_regime)s, %(regime_confidence)s,
                                 %(stage3_model_id)s, %(stage3_probability)s, %(stage3_threshold)s, %(stage3_passed)s, %(stage3_time_ms)s,
                                 %(stage4_model_id)s, %(stage4_probability)s, %(stage4_dynamic_threshold)s, %(stage4_passed)s, %(stage4_time_ms)s,
@@ -571,6 +759,8 @@ def main():
     logger.info("=" * 60)
 
     predictor = MultiStagePredictor()
+
+    # Process signals
     results = predictor.process_batch(limit=500)
 
     # Show signals to trade
@@ -580,6 +770,17 @@ def main():
         for trade in sorted(trades, key=lambda x: x['final_confidence'], reverse=True)[:10]:
             logger.info(f"  {trade['signal_type']} {trade['pair_symbol']}: "
                         f"confidence={trade['final_confidence']:.3f}")
+    else:
+        logger.info("\n⚠️ No signals passed all filters")
+
+    # Check system health
+    with psycopg2.connect(**predictor.conn_params) as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT * FROM ml.check_system_health()")
+            logger.info("\n📊 SYSTEM HEALTH CHECK:")
+            for row in cur.fetchall():
+                status_emoji = "✅" if row[1] == "OK" else "⚠️" if row[1] == "WARNING" else "❌"
+                logger.info(f"  {status_emoji} {row[0]}: {row[2]}")
 
     logger.info("\n✅ Processing complete!")
 

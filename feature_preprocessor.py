@@ -35,6 +35,7 @@ class FeaturePreprocessor:
                 df = df.drop(columns=[col])
 
         # CRITICAL: Handle POC columns (they appear as object but are actually numeric with NaN)
+        # Note: POC columns exist in ml_training_data_direct but not in real-time signals
         poc_columns = ['poc_volume_24h', 'poc_volume_7d', 'price_to_poc_24h_pct',
                        'price_to_poc_7d_pct', 'price_to_poc_30d_pct', 'rs_momentum']
 
@@ -66,11 +67,20 @@ class FeaturePreprocessor:
                 else:
                     # For percentage columns, just fill NaN
                     df[col] = df[col].fillna(0)
+            else:
+                # If POC columns don't exist (real-time signals), add them with default values
+                if model_type != 'quick_filter':  # Quick filter doesn't need POC
+                    if 'poc' in col:
+                        df[col] = 0.0
+                    if col == 'rs_momentum' and col not in df.columns:
+                        # Try to use existing momentum indicator if available
+                        df[col] = 0.0
 
         # Handle categorical columns by encoding them
         categorical_mappings = {
             'signal_strength': {'WEAK': 1, 'MODERATE': 2, 'STRONG': 3, 'VERY_STRONG': 4},
             'market_regime': {'BEAR': -1, 'NEUTRAL': 0, 'BULL': 1},
+            'recommended_action': {'SELL': -1, 'WAIT': 0, 'BUY': 1, 'STRONG_SELL': -2, 'STRONG_BUY': 2},
             'pattern_1_name': {
                 'ACCUMULATION': 1, 'DISTRIBUTION': -1, 'VOLUME_ANOMALY': 2,
                 'MOMENTUM_EXHAUSTION': 3, 'OI_EXPLOSION': 4, 'SQUEEZE_IGNITION': 5,
@@ -84,6 +94,41 @@ class FeaturePreprocessor:
                 # Map values, use 0 for unknown/NaN
                 df[col + '_encoded'] = df[col].map(mapping).fillna(0)
                 df = df.drop(columns=[col])
+            elif col == 'signal_strength':
+                # Calculate signal_strength from total_score if not present
+                if 'total_score' in df.columns:
+                    total_scores = pd.to_numeric(df['total_score'], errors='coerce').fillna(0)
+                    abs_scores = total_scores.abs()
+                    # Use pd.cut to categorize scores
+                    strength_categories = pd.cut(
+                        abs_scores,
+                        bins=[-np.inf, 10, 25, 50, np.inf],
+                        labels=[1, 2, 3, 4],
+                        include_lowest=True
+                    )
+                    # Convert to int, handling NaN values
+                    df['signal_strength_encoded'] = strength_categories.fillna(2).astype(int)
+                else:
+                    df['signal_strength_encoded'] = 2  # Default to MODERATE
+            elif col == 'market_regime' and col + '_encoded' not in df.columns:
+                # Default market regime to NEUTRAL if not present
+                df['market_regime_encoded'] = 0
+            elif col == 'recommended_action' and col + '_encoded' not in df.columns:
+                # Calculate recommended_action from total_score if not present
+                if 'total_score' in df.columns:
+                    total_scores = pd.to_numeric(df['total_score'], errors='coerce').fillna(0)
+                    # Map scores to actions
+                    conditions = [
+                        total_scores <= -50,  # STRONG_SELL
+                        total_scores <= -10,  # SELL
+                        total_scores <= 10,   # WAIT
+                        total_scores <= 50,   # BUY
+                        total_scores > 50     # STRONG_BUY
+                    ]
+                    choices = [-2, -1, 0, 1, 2]
+                    df['recommended_action_encoded'] = np.select(conditions, choices, default=0)
+                else:
+                    df['recommended_action_encoded'] = 0
 
         # Handle pattern and combo names - create binary indicators
         pattern_cols = ['pattern_1_name', 'pattern_2_name', 'pattern_3_name']
@@ -100,6 +145,27 @@ class FeaturePreprocessor:
             if col in df.columns:
                 df[col + '_exists'] = df[col].notna().astype(int)
                 df = df.drop(columns=[col])
+
+        # Ensure pattern_count and combo_count exist
+        if 'pattern_count' not in df.columns:
+            # Try to calculate from pattern exists columns or use default
+            pattern_exists_cols = [c for c in df.columns if c.startswith('pattern_') and '_exists' in c]
+            if pattern_exists_cols:
+                df['pattern_count'] = df[pattern_exists_cols].sum(axis=1)
+            else:
+                df['pattern_count'] = 0
+
+        if 'combo_count' not in df.columns:
+            # Try to calculate from combo exists columns or use default
+            combo_exists_cols = [c for c in df.columns if c.startswith('combo_') and '_exists' in c]
+            if combo_exists_cols:
+                df['combo_count'] = df[combo_exists_cols].sum(axis=1)
+            else:
+                df['combo_count'] = 0
+
+        # Convert to int
+        df['pattern_count'] = pd.to_numeric(df['pattern_count'], errors='coerce').fillna(0).astype(int)
+        df['combo_count'] = pd.to_numeric(df['combo_count'], errors='coerce').fillna(0).astype(int)
 
         # Convert boolean columns to int
         bool_cols = df.select_dtypes(include=['bool']).columns
